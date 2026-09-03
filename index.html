@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GP Clinic in Pallara | Pallara Medical — Book an Appointment Today</title>
+<meta name="description" content="Pallara Medical is your local GP clinic in Pallara. Same-day appointments, family healthcare, skin checks, vaccinations and women's health. Book online in under a minute.">
+<link rel="icon" href="https://www.pallaradoctors.com.au/wp-content/uploads/2025/06/cropped-logo-192x192.png" sizes="192x192">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   PALLARA MEDICAL — HOMEPAGE REDESIGN (standalone)
+   Brand: #3257a8 (primary)  |  #272727 (ink)
+   Container: 1440px max — 1880px on screens ≥1800px
+   ============================================================ */
+
+:root{
+  --blue:#3257a8;
+  --blue-dark:#24417f;
+  --blue-deep:#1a3162;
+  --blue-soft:#7aafff;
+  --blue-tint:#eef3fc;
+  --blue-tint-2:#dce7f9;
+  --ink:#272727;
+  --ink-soft:#4a4a4a;
+  --muted:#6b7280;
+  --line:#e4e8f0;
+  --white:#fff;
+  --bg:#f7f9fc;
+  --radius:14px;
+  --radius-lg:22px;
+  --shadow-sm:0 2px 10px rgba(39,39,39,.06);
+  --shadow:0 14px 40px rgba(26,49,98,.10);
+  --shadow-lg:0 26px 70px rgba(26,49,98,.18);
+  --container:1440px;
+  --gutter:clamp(18px,4vw,60px);
+  --sans:"Open Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --head:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --header-h:150px;
+}
+@media (min-width:1800px){ :root{ --container:1880px; } }
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--white);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.75;font-weight:400;
+  overflow-x:hidden;
+}
+body.nav-open{overflow:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--blue);text-decoration:none}
+h1,h2,h3,h4{font-family:var(--head);color:var(--ink);line-height:1.18;margin:0 0 .6em;font-weight:700;letter-spacing:-.01em}
+h1{font-size:clamp(2.1rem,4vw,3.6rem);font-weight:800}
+h2{font-size:clamp(1.7rem,2.7vw,2.7rem)}
+h3{font-size:clamp(1.15rem,1.5vw,1.4rem)}
+p{margin:0 0 1.15rem}
+ul{margin:0;padding:0;list-style:none}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--blue-soft);outline-offset:3px;border-radius:4px}
+
+.container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter)}
+.section{padding:clamp(60px,7vw,110px) 0}
+.section--tint{background:var(--bg)}
+.eyebrow{
+  font-family:var(--head);font-size:.82rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--blue);margin:0 0 .8rem;display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--blue);display:inline-block}
+.eyebrow--center{justify-content:center}
+.lead{font-size:1.06rem;color:var(--ink-soft)}
+.section-head{max-width:760px}
+.section-head--center{margin-inline:auto;text-align:center}
+.section-head--center .eyebrow{justify-content:center}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--head);font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:17px 34px;border-radius:8px;border:2px solid transparent;cursor:pointer;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease;
+  text-align:center;line-height:1.2;
+}
+.btn svg{width:18px;height:18px;flex:none}
+.btn--primary{background:var(--blue);color:#fff;box-shadow:0 10px 26px rgba(50,87,168,.32)}
+.btn--primary:hover{background:var(--blue-dark);color:#fff;transform:translateY(-2px);box-shadow:0 16px 34px rgba(50,87,168,.42)}
+.btn--ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.65)}
+.btn--ghost:hover{background:#fff;color:var(--blue);border-color:#fff;transform:translateY(-2px)}
+.btn--outline{background:#fff;color:var(--blue);border-color:var(--blue)}
+.btn--outline:hover{background:var(--blue);color:#fff;transform:translateY(-2px)}
+.btn--white{background:#fff;color:var(--blue)}
+.btn--white:hover{background:var(--blue-deep);color:#fff;transform:translateY(-2px)}
+.btn--block{width:100%}
+.btn--lg{padding:19px 42px;font-size:1.05rem}
+
+/* ============================================================
+   HEADER (global — placeholder markup for the shared header)
+   ============================================================ */
+.site-header{position:sticky;top:0;z-index:120;background:#fff;box-shadow:0 1px 0 var(--line)}
+.header-top{background:var(--ink);color:#fff;font-size:.9rem}
+.header-top .container{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:46px}
+.header-top ul{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.header-top a{color:rgba(255,255,255,.86);display:inline-flex;align-items:center;gap:9px;transition:color .2s}
+.header-top a:hover{color:#fff}
+.header-top svg{width:15px;height:15px;fill:var(--blue-soft);flex:none}
+.header-socials{display:flex;gap:10px}
+.header-socials a{width:30px;height:30px;border-radius:50%;background:var(--blue);align-items:center;justify-content:center}
+.header-socials a:hover{background:var(--blue-soft)}
+.header-socials svg{width:14px;height:14px;fill:#fff}
+
+.header-main .container{display:flex;align-items:center;justify-content:space-between;gap:26px;min-height:96px}
+.brand img{width:186px}
+.nav-list{display:flex;align-items:center;gap:4px}
+.nav-list > li > a{
+  display:block;padding:14px 15px;font-family:var(--head);font-weight:600;font-size:.94rem;
+  color:var(--ink);border-radius:8px;transition:color .2s,background .2s;
+}
+.nav-list > li > a:hover,.nav-list > li.current > a{color:var(--blue);background:var(--blue-tint)}
+.has-sub{position:relative}
+.has-sub > a::after{content:"";display:inline-block;width:6px;height:6px;margin-left:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.sub-menu{
+  position:absolute;top:100%;left:0;min-width:290px;background:#fff;border-radius:12px;
+  box-shadow:var(--shadow);padding:10px;opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:.22s ease;max-height:60vh;overflow-y:auto;
+}
+.has-sub:hover .sub-menu,.has-sub:focus-within .sub-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.sub-menu a{display:block;padding:9px 14px;font-size:.92rem;color:var(--ink-soft);border-radius:7px}
+.sub-menu a:hover{background:var(--blue-tint);color:var(--blue)}
+.nav-book{display:none}
+.header-cta{display:flex;align-items:center;gap:14px}
+.header-phone{
+  display:inline-flex;align-items:center;gap:11px;font-family:var(--head);font-weight:700;
+  color:var(--ink);font-size:1.05rem;white-space:nowrap;
+}
+.header-phone .icon-circle{
+  width:44px;height:44px;border-radius:50%;background:var(--ink);border:2px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;flex:none;transition:.2s;
+}
+.header-phone .icon-circle svg{width:18px;height:18px;fill:#fff}
+.header-phone:hover .icon-circle{background:var(--blue);border-color:var(--blue)}
+.header-phone small{display:block;font-family:var(--sans);font-weight:400;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+
+/* Mobile controls: phone circle sits to the LEFT of the hamburger */
+.mobile-controls{display:none;align-items:center;gap:12px}
+.phone-circle{
+  width:46px;height:46px;border-radius:50%;background:var(--ink);border:2px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;flex:none;
+}
+.phone-circle svg{width:19px;height:19px;fill:#fff}
+.phone-circle:hover,.phone-circle:focus{background:var(--blue);border-color:var(--blue)}
+.hamburger{
+  width:46px;height:46px;border-radius:10px;border:2px solid var(--line);background:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;padding:0;
+}
+.hamburger span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:.25s}
+.hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+@media (max-width:1440px){
+  .nav-list > li > a{padding:14px 12px;font-size:.9rem}
+  .brand img{width:160px}
+}
+@media (max-width:1200px){
+  .nav-list > li > a{padding:13px 9px;font-size:.85rem}
+  .header-phone small{display:none}
+  .header-phone span:last-child{font-size:.95rem}
+}
+/* Mobile top strip: one tappable BOOK NOW bar */
+.top-book{display:none;background:var(--blue);text-align:center}
+.top-book a{
+  display:flex;align-items:center;justify-content:center;gap:9px;color:#fff;
+  font-family:var(--head);font-weight:700;font-size:.86rem;letter-spacing:.12em;
+  text-transform:uppercase;padding:12px 16px;
+}
+.top-book svg{width:15px;height:15px;fill:#fff}
+
+@media (max-width:1024px){
+  .header-top{display:none}
+  .top-book{display:block}
+  .header-main .container{min-height:76px}
+  .brand img{width:150px}
+  .site-nav{
+    position:fixed;inset:var(--header-h) 0 0;background:#fff;padding:22px var(--gutter) 120px;
+    overflow-y:auto;transform:translateX(100%);transition:transform .3s ease;z-index:110;
+  }
+  body.nav-open .site-nav{transform:translateX(0)}
+  .nav-list{flex-direction:column;align-items:stretch;gap:0}
+  .nav-list > li{border-bottom:1px solid var(--line)}
+  .nav-list > li > a{padding:16px 4px;font-size:1.05rem;border-radius:0}
+  .sub-menu{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;padding:0 0 10px 12px;display:none;max-height:none}
+  .has-sub.open .sub-menu{display:block}
+  .has-sub > a::after{float:right;margin-top:8px}
+  .nav-book{display:block;margin-top:24px;border-bottom:0!important}
+  .nav-book > a{padding:17px 34px}
+  .header-cta .header-phone,.header-cta .btn{display:none}
+  .mobile-controls{display:flex}
+}
+
+/* ============================================================
+   HERO — copy + CTA left, booking form right
+   ============================================================ */
+.hero{position:relative;background:var(--ink);color:#fff;overflow:hidden;isolation:isolate}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:url("https://www.pallaradoctors.com.au/wp-content/uploads/2025/07/homepage-banner.png") center/cover no-repeat;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(100deg,rgba(23,34,58,.94) 0%,rgba(26,49,98,.88) 42%,rgba(50,87,168,.62) 70%,rgba(39,39,39,.72) 100%);
+}
+.hero .container{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,4vw,70px);align-items:center;
+  padding-block:clamp(56px,6.5vw,104px);
+}
+.hero h1{color:#fff;max-width:15ch}
+.hero h1 em{font-style:normal;color:var(--blue-soft)}
+.hero-copy p{color:rgba(255,255,255,.88);font-size:clamp(1.02rem,1.25vw,1.18rem);max-width:56ch}
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.hero-badges li{
+  display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:8px 16px;
+  font-size:.86rem;font-weight:600;font-family:var(--head);backdrop-filter:blur(4px);
+}
+.hero-badges svg{width:15px;height:15px;fill:var(--blue-soft)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:26px}
+.hero-note{display:flex;align-items:center;gap:12px;font-size:.92rem;color:rgba(255,255,255,.78)}
+.hero-note strong{color:#fff}
+
+/* Booking form card */
+.booking-card{
+  background:rgba(255,255,255,.97);border-radius:var(--radius-lg);padding:clamp(24px,2.4vw,38px);
+  box-shadow:var(--shadow-lg);border-top:6px solid var(--blue);
+}
+.booking-card h2{font-size:clamp(1.35rem,1.8vw,1.75rem);margin-bottom:4px;color:var(--ink)}
+.booking-card p{font-size:.95rem}
+.booking-card .form-sub{font-size:.92rem;color:var(--muted);margin-bottom:20px;max-width:none}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.field{display:flex;flex-direction:column}
+.field--full{grid-column:1/-1}
+.field label{font-size:.78rem;font-weight:600;font-family:var(--head);color:var(--ink-soft);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.field input,.field select,.field textarea{
+  font-family:var(--sans);font-size:.96rem;color:var(--ink);background:#fff;
+  border:1.5px solid var(--line);border-radius:9px;padding:13px 14px;width:100%;transition:.18s;
+}
+.field textarea{resize:vertical;min-height:86px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);outline:none;box-shadow:0 0 0 4px rgba(50,87,168,.12)}
+.field input::placeholder,.field textarea::placeholder{color:#9aa3b2}
+.form-foot{display:flex;align-items:center;gap:12px;margin-top:16px;margin-bottom:0;font-size:.84rem;color:var(--ink-soft);line-height:1.5}
+.form-foot svg{width:16px;height:16px;fill:var(--blue);flex:none}
+.form-alt{text-align:center;margin:14px 0 0;font-size:.9rem;color:var(--muted)}
+.form-alt a{font-weight:700}
+.form-status{margin-top:14px;padding:13px 16px;border-radius:9px;background:var(--blue-tint);color:var(--blue-deep);font-size:.92rem;display:none}
+.form-status.is-visible{display:block}
+
+@media (max-width:1024px){
+  .hero .container{grid-template-columns:1fr;gap:34px}
+  .hero h1{max-width:none}
+}
+
+/* ============================================================
+   QUICK INFO STRIP
+   ============================================================ */
+.quickbar{margin-top:-46px;position:relative;z-index:5}
+.quickbar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,26px)}
+.quick-card{
+  background:#fff;border-radius:var(--radius);padding:30px 28px;box-shadow:var(--shadow);
+  border-left:5px solid var(--blue);display:flex;gap:18px;align-items:flex-start;
+}
+.quick-card .qi{
+  width:52px;height:52px;border-radius:12px;background:var(--blue-tint);
+  display:flex;align-items:center;justify-content:center;flex:none;
+}
+.quick-card .qi svg{width:24px;height:24px;fill:var(--blue)}
+.quick-card h3{font-size:1.08rem;margin-bottom:4px}
+.quick-card p{margin:0;font-size:.94rem;color:var(--ink-soft)}
+.hours-row{display:flex;justify-content:space-between;gap:14px;font-size:.94rem;border-bottom:1px dashed var(--line);padding:4px 0}
+.hours-row:last-child{border-bottom:0}
+.hours-row strong{font-family:var(--head);color:var(--ink)}
+.quick-card a.qlink{font-weight:700;font-family:var(--head);font-size:.9rem;display:inline-flex;align-items:center;gap:6px;margin-top:6px}
+@media (max-width:900px){ .quickbar{margin-top:0;padding-top:clamp(40px,6vw,60px)} .quickbar-grid{grid-template-columns:1fr} }
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(14px,1.6vw,24px);margin-top:44px}
+.service-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;
+  transition:.24s ease;position:relative;overflow:hidden;
+}
+.service-card::after{content:"";position:absolute;left:0;bottom:0;height:4px;width:0;background:var(--blue);transition:width .3s ease}
+.service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+.service-card:hover::after{width:100%}
+.service-card .si{width:50px;height:50px;border-radius:12px;background:var(--blue-tint);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.service-card .si svg{width:24px;height:24px;fill:var(--blue)}
+.service-card h3{font-size:1.06rem;margin-bottom:8px}
+.service-card p{font-size:.93rem;color:var(--ink-soft);margin:0}
+.services-cta{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center;margin-top:46px}
+
+/* ============================================================
+   ALTERNATING CONTENT
+   ============================================================ */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,86px);align-items:center}
+.split + .split{margin-top:clamp(56px,7vw,110px)}
+.split--rev .split-media{order:2}
+.split-media{position:relative}
+.split-media .img-main{border-radius:var(--radius-lg);box-shadow:var(--shadow);width:100%;object-fit:cover}
+.split-media .img-sub{
+  position:absolute;right:-22px;bottom:-38px;width:52%;border-radius:var(--radius);
+  border:8px solid #fff;box-shadow:var(--shadow);object-fit:cover;
+}
+.split--rev .split-media .img-sub{right:auto;left:-22px}
+.split-body ul.ticks{margin:0 0 22px;display:grid;gap:11px}
+.split-body ul.ticks li{display:flex;gap:11px;align-items:flex-start;font-size:.98rem;color:var(--ink-soft)}
+.split-body ul.ticks svg{width:20px;height:20px;fill:var(--blue);flex:none;margin-top:3px}
+@media (max-width:900px){
+  .split{grid-template-columns:1fr;gap:56px}
+  .split--rev .split-media{order:0}
+  .split-media .img-sub{width:44%;right:-8px;bottom:-28px}
+  .split--rev .split-media .img-sub{left:-8px}
+}
+
+/* ============================================================
+   STATS / TEAM / CTA BANDS
+   ============================================================ */
+.stats{background:var(--blue);color:#fff}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat b{display:block;font-family:var(--head);font-size:clamp(2rem,3.4vw,3rem);font-weight:800;line-height:1}
+.stat span{font-size:.94rem;color:rgba(255,255,255,.82)}
+@media (max-width:760px){ .stats-grid{grid-template-columns:repeat(2,1fr);gap:34px 20px} }
+
+.team{background:var(--ink);color:#fff;overflow:hidden}
+.team .container{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,70px);align-items:center}
+.team h2{color:#fff}
+.team p{color:rgba(255,255,255,.82)}
+.team .eyebrow{color:var(--blue-soft)}
+.team .eyebrow::before{background:var(--blue-soft)}
+.team-media img{border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)}
+@media (max-width:900px){ .team .container{grid-template-columns:1fr} }
+
+.cta-band{background:linear-gradient(115deg,var(--blue-deep),var(--blue) 65%,#3f6ac4);color:#fff;text-align:center}
+.cta-band h2{color:#fff;max-width:22ch;margin-inline:auto}
+.cta-band p{color:rgba(255,255,255,.88);max-width:60ch;margin-inline:auto}
+.cta-band .btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+
+/* ============================================================
+   CONTACT + MAP + FORM
+   ============================================================ */
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(26px,3vw,54px);align-items:start;margin-top:44px}
+.contact-list{display:grid;gap:16px;margin-bottom:26px}
+.contact-list li{display:flex;gap:15px;align-items:flex-start}
+.contact-list .ci{width:46px;height:46px;border-radius:12px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex:none}
+.contact-list .ci svg{width:20px;height:20px;fill:#fff}
+.contact-list b{display:block;font-family:var(--head);font-size:.8rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:600}
+.contact-list a,.contact-list span{color:var(--ink);font-size:1rem;font-weight:500}
+.contact-list a:hover{color:var(--blue)}
+.map-embed{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--line);line-height:0}
+.map-embed iframe{width:100%;height:340px;border:0;display:block}
+.contact-form{background:#fff;border-radius:var(--radius-lg);padding:clamp(24px,2.6vw,40px);box-shadow:var(--shadow);border-top:6px solid var(--blue)}
+@media (max-width:900px){ .contact-grid{grid-template-columns:1fr} .map-embed iframe{height:300px} }
+@media (max-width:560px){ .form-grid{grid-template-columns:1fr} }
+
+/* ============================================================
+   FOOTER (global — placeholder markup for the shared footer)
+   ============================================================ */
+.site-footer{background:var(--ink);color:rgba(255,255,255,.76);padding-top:clamp(50px,6vw,86px)}
+.footer-grid{display:grid;grid-template-columns:1.35fr 1fr 1.2fr;gap:clamp(28px,3vw,56px);padding-bottom:50px}
+.site-footer h4{color:#fff;font-size:1.02rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:22px}
+.site-footer a{color:rgba(255,255,255,.76)}
+.site-footer a:hover{color:#fff}
+.footer-brand img{width:180px;background:#fff;padding:12px 16px;border-radius:10px;margin-bottom:20px}
+.footer-contact{display:grid;gap:12px;font-size:.95rem}
+.footer-contact li{display:flex;gap:11px;align-items:flex-start}
+.footer-contact svg{width:17px;height:17px;fill:var(--blue-soft);flex:none;margin-top:5px}
+.footer-links{display:grid;gap:10px;font-size:.95rem}
+.footer-socials{display:flex;gap:12px;margin-top:24px}
+.footer-socials a{width:40px;height:40px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center}
+.footer-socials a:hover{background:var(--blue-soft)}
+.footer-socials svg{width:17px;height:17px;fill:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding:22px 0;font-size:.88rem}
+.footer-bottom .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:900px){ .footer-grid{grid-template-columns:1fr;gap:38px} }
+
+/* ============================================================
+   FLOATING MOBILE CALL BUTTON (bottom centre)
+   ============================================================ */
+.floating-call{
+  display:none;position:fixed;left:50%;transform:translateX(-50%);
+  bottom:calc(18px + env(safe-area-inset-bottom));z-index:130;
+  align-items:center;gap:10px;padding:15px 30px;border-radius:999px;
+  background:var(--blue);color:#fff;font-family:var(--head);font-weight:700;
+  font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
+  box-shadow:0 12px 30px rgba(26,49,98,.45);animation:pulseCall 2.4s ease-in-out infinite;
+}
+.floating-call svg{width:19px;height:19px;fill:#fff}
+.floating-call:active{transform:translateX(-50%) scale(.97)}
+@keyframes pulseCall{
+  0%,100%{box-shadow:0 12px 30px rgba(26,49,98,.45),0 0 0 0 rgba(50,87,168,.5)}
+  60%{box-shadow:0 12px 30px rgba(26,49,98,.45),0 0 0 16px rgba(50,87,168,0)}
+}
+@media (max-width:1024px){ .floating-call{display:inline-flex} body{padding-bottom:78px} }
+@media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} html{scroll-behavior:auto} }
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+[id]{scroll-margin-top:130px}
+.split-media .img-main{aspect-ratio:749/620}
+.split-media .img-sub{aspect-ratio:431/253}
+.team-media img{aspect-ratio:960/755;object-fit:cover;width:100%}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+</head>
+<body>
+
+<!-- ===== Icon sprite ===== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.7.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.7.1.3 0 .7-.2 1l-2.3 2.1z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 4.8-8-4.8V6l8 4.8L20 6v2.2z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol>
+  <symbol id="i-fax" viewBox="0 0 24 24"><path d="M7 2h10v4H7zM5 8a3 3 0 0 0-3 3v7a2 2 0 0 0 2 2h1V8H5zm14 0h-1v12h1a2 2 0 0 0 2-2v-7a3 3 0 0 0-3-3zM8 8v12h8V8H8zm6 8h-4v-2h4v2zm0-4h-4v-2h4v2z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10.6-4-2.3V6h2v3.7l3 1.7-1 1.2z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.4-4.2-4.2 1.4-1.4 2.8 2.8 5.8-5.8 1.4 1.4-7.2 7.2z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm12 8v9H5v-9h14z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3zm-1 13-3-3 1.4-1.4 1.6 1.6 4-4L16.4 9 11 15z"/></symbol>
+  <symbol id="i-stetho" viewBox="0 0 24 24"><path d="M6 3v6a4 4 0 0 0 3 3.9V15a4 4 0 0 0 8 0v-1.2a3 3 0 1 0-2-.1V15a2 2 0 0 1-4 0v-2.1A4 4 0 0 0 14 9V3h-2v6a2 2 0 0 1-4 0V3H6zm12 8.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></symbol>
+  <symbol id="i-baby" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM9 9.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zm6 0a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zm-3 8.1c-2 0-3.6-1.2-4.2-2.9h8.4c-.6 1.7-2.2 2.9-4.2 2.9z"/></symbol>
+  <symbol id="i-female" viewBox="0 0 24 24"><path d="M12 2a6 6 0 0 0-1 11.9V16H8v2h3v4h2v-4h3v-2h-3v-2.1A6 6 0 0 0 12 2zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 3h6v2H5v4H3V3zm12 0h6v6h-2V5h-4V3zM3 15h2v4h4v2H3v-6zm16 0h2v6h-6v-2h4v-4zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></symbol>
+  <symbol id="i-scalpel" viewBox="0 0 24 24"><path d="M20.8 3.2a2 2 0 0 0-2.8 0L9 12.2 11.8 15l9-9a2 2 0 0 0 0-2.8zM8 13.6 3 18.6V21h2.4l5-5L8 13.6z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M13.2 4.6 11.8 6l5.2 5H3v2h14l-5.2 5 1.4 1.4L21 12l-7.8-7.4z"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path d="M24 12.07C24 5.44 18.63.07 12 .07S0 5.44 0 12.07c0 5.99 4.39 10.95 10.13 11.85v-8.38H7.08v-3.47h3.05V9.43c0-3.01 1.79-4.67 4.53-4.67 1.31 0 2.69.24 2.69.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87v2.25h3.33l-.53 3.47h-2.8v8.38C19.61 23.02 24 18.06 24 12.07z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.02 4.85.07 3.25.15 4.77 1.7 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92C8.42 2.18 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 0 0 2.89 1.44 1.44 0 0 0 0-2.89z"/></symbol>
+</svg>
+
+<!-- ============================================================
+     GLOBAL HEADER  (this block will be replaced by the site-wide header)
+     ============================================================ -->
+<header class="site-header">
+  <!-- Mobile-only booking strip -->
+  <div class="top-book">
+    <a href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener">
+      <svg><use href="#i-calendar"></use></svg> Book Now Online
+    </a>
+  </div>
+
+  <div class="header-top">
+    <div class="container">
+      <ul>
+        <li class="top-address"><a href="https://maps.app.goo.gl/7j12vx4kuDp2psLbA" target="_blank" rel="noopener"><svg><use href="#i-pin"></use></svg>Pallara Shopping Village, T4.1 – 201 Gooderham Rd, Pallara QLD 4110</a></li>
+        <li><a href="mailto:info@pallaradoctors.com.au"><svg><use href="#i-mail"></use></svg>info@pallaradoctors.com.au</a></li>
+        <li><a href="tel:0731007111"><svg><use href="#i-phone"></use></svg>07 3100 7111</a></li>
+      </ul>
+      <ul class="header-socials">
+        <li><a href="https://www.facebook.com/share/14Z8hMAbeik/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"></use></svg></a></li>
+        <li><a href="https://www.instagram.com/pallaramedical" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"></use></svg></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="header-main">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Pallara Medical home">
+        <img src="https://www.pallaradoctors.com.au/wp-content/uploads/2025/06/logo.png" width="193" height="73" alt="Pallara Medical">
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li class="current"><a href="/">Home</a></li>
+          <li><a href="/about/">About</a></li>
+          <li class="has-sub">
+            <a href="#" aria-expanded="false">Doctors</a>
+            <ul class="sub-menu">
+              <li><a href="/dr-navjot-brar/">Dr Navjot Brar</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="/medical-services-pallara/" aria-expanded="false">Services</a>
+            <ul class="sub-menu">
+              <li><a href="/child-health-checks-and-immunisations-pallara/">Child Health Checks &amp; Immunisations</a></li>
+              <li><a href="/contraceptives-pallara/">Contraceptives</a></li>
+              <li><a href="/skin-checks-and-excisions-pallara/">Skin Checks &amp; Excisions</a></li>
+              <li><a href="/iron-infusions-pallara/">Iron Infusions</a></li>
+              <li><a href="/maternity-care-services-pallara/">Maternity Care</a></li>
+              <li><a href="/menopause-assessment-and-management-pallara/">Menopause Assessment</a></li>
+              <li><a href="/implanon-insertion-and-removal-pallara/">Implanon Insertion &amp; Removal</a></li>
+              <li><a href="/minor-surgery-pallara/">Surgery &amp; Procedures</a></li>
+              <li><a href="/x-ray-referral-pallara/">Referrals &amp; X-Rays</a></li>
+              <li><a href="/vaccination-pallara/">Vaccinations</a></li>
+              <li><a href="/commercial-driver-licence-pallara/">Commercial Driver Licence</a></li>
+              <li><a href="/workcover-claims-and-consultations-pallara/">WorkCover Claims</a></li>
+            </ul>
+          </li>
+          <li><a href="/patient-info/">Patient Info</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li class="nav-book"><a class="btn btn--primary btn--block" href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener">Book Now</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <a class="header-phone" href="tel:0731007111">
+          <span class="icon-circle"><svg><use href="#i-phone"></use></svg></span>
+          <span><small>Call the clinic</small>07 3100 7111</span>
+        </a>
+        <a class="btn btn--primary" href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener">Book Now</a>
+
+        <!-- Mobile: phone circle sits to the LEFT of the hamburger -->
+        <div class="mobile-controls">
+          <a class="phone-circle" href="tel:0731007111" aria-label="Call Pallara Medical on 07 3100 7111"><svg><use href="#i-phone"></use></svg></a>
+          <button class="hamburger" id="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-copy">
+      <p class="eyebrow" style="color:var(--blue-soft)">GP Clinic in Pallara</p>
+      <h1>See a Doctor in Pallara — <em>Often the Same Day</em></h1>
+      <p>From routine check-ups to skin checks, women's health and chronic care, our GPs look after your whole family at every stage of life. Booking online takes less than a minute.</p>
+      <ul class="hero-badges">
+        <li><svg><use href="#i-check"></use></svg> Same-day appointments</li>
+        <li><svg><use href="#i-check"></use></svg> Open 6 days a week</li>
+        <li><svg><use href="#i-check"></use></svg> On-site procedures</li>
+        <li><svg><use href="#i-check"></use></svg> Family &amp; women's health</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="btn btn--primary btn--lg" href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener">
+          <svg><use href="#i-calendar"></use></svg> Book Now
+        </a>
+        <a class="btn btn--ghost btn--lg" href="tel:0731007111"><svg><use href="#i-phone"></use></svg> 07 3100 7111</a>
+      </div>
+      <p class="hero-note"><svg style="width:18px;height:18px;fill:var(--blue-soft)"><use href="#i-pin"></use></svg> <span><strong>Pallara Shopping Village</strong> — free on-site parking at the door</span></p>
+    </div>
+
+    <!-- Banner booking form -->
+    <div class="booking-card">
+      <h2>Request an Appointment</h2>
+      <p class="form-sub">Prefer to lock in a time right now? <a href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener"><strong>Book online instantly →</strong></a></p>
+      <form class="js-form" novalidate>
+        <div class="form-grid">
+          <div class="field"><label for="h-name">Full name*</label><input id="h-name" name="name" type="text" placeholder="Jane Smith" required></div>
+          <div class="field"><label for="h-phone">Phone*</label><input id="h-phone" name="phone" type="tel" placeholder="0400 000 000" required></div>
+          <div class="field"><label for="h-email">Email*</label><input id="h-email" name="email" type="email" placeholder="you@email.com" required></div>
+          <div class="field"><label for="h-doctor">Preferred doctor</label>
+            <select id="h-doctor" name="doctor">
+              <option value="">Next available GP</option>
+              <option>Dr Navjot Brar</option>
+            </select>
+          </div>
+          <div class="field"><label for="h-date">Preferred date*</label><input id="h-date" name="date" type="date" required></div>
+          <div class="field"><label for="h-time">Preferred time*</label>
+            <select id="h-time" name="time" required>
+              <option value="">Select a time</option>
+              <option>8:30 AM – 10:00 AM</option>
+              <option>10:00 AM – 12:00 PM</option>
+              <option>12:00 PM – 2:00 PM</option>
+              <option>2:00 PM – 4:30 PM</option>
+            </select>
+          </div>
+          <div class="field field--full"><label for="h-notes">Reason for visit (optional)</label><textarea id="h-notes" name="notes" rows="3" placeholder="Tell us briefly how we can help"></textarea></div>
+        </div>
+        <button class="btn btn--primary btn--block btn--lg" type="submit" style="margin-top:16px">Request Appointment</button>
+        <p class="form-foot"><svg><use href="#i-shield"></use></svg> Your details stay private and are only used to arrange your appointment.</p>
+        <p class="form-status" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     QUICK INFO STRIP
+     ============================================================ -->
+<section class="quickbar">
+  <div class="container">
+    <div class="quickbar-grid">
+      <div class="quick-card reveal">
+        <span class="qi"><svg><use href="#i-clock"></use></svg></span>
+        <div>
+          <h3>Opening Hours</h3>
+          <div class="hours-row"><span>Monday – Friday</span><strong>8:30am – 4:30pm</strong></div>
+          <div class="hours-row"><span>Saturday</span><strong>By appointment</strong></div>
+          <div class="hours-row"><span>Sunday</span><strong>Closed</strong></div>
+        </div>
+      </div>
+      <div class="quick-card reveal">
+        <span class="qi"><svg><use href="#i-calendar"></use></svg></span>
+        <div>
+          <h3>Book Your Appointment</h3>
+          <p>Online bookings are open for all doctors. Walk-ins are offered the next available GP.</p>
+          <a class="qlink" href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener">Book now <svg style="width:15px;height:15px;fill:var(--blue)"><use href="#i-arrow"></use></svg></a>
+        </div>
+      </div>
+      <div class="quick-card reveal">
+        <span class="qi"><svg><use href="#i-shield"></use></svg></span>
+        <div>
+          <h3>Vaccinations &amp; COVID</h3>
+          <p>Pfizer and Moderna vaccines available, along with flu shots and travel vaccinations.</p>
+          <a class="qlink" href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener">Reserve a spot <svg style="width:15px;height:15px;fill:var(--blue)"><use href="#i-arrow"></use></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES
+     ============================================================ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <p class="eyebrow eyebrow--center">Our Services</p>
+      <h2>Comprehensive Care, Tailored For You</h2>
+      <p class="lead">One clinic for your family's everyday health needs — check-ups, chronic care, procedures and preventative health, all under one roof in Pallara.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card reveal">
+        <span class="si"><svg><use href="#i-stetho"></use></svg></span>
+        <h3>General Consultations</h3>
+        <p>Everyday illnesses, health concerns, medical certificates and referrals with a GP who knows your history.</p>
+      </article>
+      <article class="service-card reveal">
+        <span class="si"><svg><use href="#i-baby"></use></svg></span>
+        <h3>Child Health &amp; Immunisations</h3>
+        <p>Developmental checks, childhood vaccinations and gentle care for common paediatric illnesses.</p>
+      </article>
+      <article class="service-card reveal">
+        <span class="si"><svg><use href="#i-female"></use></svg></span>
+        <h3>Women's Health</h3>
+        <p>Family planning, Implanon and Mirena, cervical screening, antenatal support and menopause management.</p>
+      </article>
+      <article class="service-card reveal">
+        <span class="si"><svg><use href="#i-scan"></use></svg></span>
+        <h3>Skin Checks &amp; Excisions</h3>
+        <p>Full skin examinations, mole checks and on-site removal of suspicious lesions.</p>
+      </article>
+      <article class="service-card reveal">
+        <span class="si"><svg><use href="#i-shield"></use></svg></span>
+        <h3>Chronic Disease Management</h3>
+        <p>Structured care plans for diabetes, asthma, hypertension and heart disease, reviewed regularly.</p>
+      </article>
+      <article class="service-card reveal">
+        <span class="si"><svg><use href="#i-scalpel"></use></svg></span>
+        <h3>Minor Surgery &amp; Procedures</h3>
+        <p>Cysts, ingrown toenails, wound suturing, dressings and iron infusions performed in-clinic.</p>
+      </article>
+      <article class="service-card reveal">
+        <span class="si"><svg><use href="#i-calendar"></use></svg></span>
+        <h3>Driver &amp; WorkCover Medicals</h3>
+        <p>Commercial, taxi and rideshare licence assessments, WorkCover claims and pre-employment checks.</p>
+      </article>
+      <article class="service-card reveal">
+        <span class="si"><svg><use href="#i-scan"></use></svg></span>
+        <h3>Referrals, X-Rays &amp; Pathology</h3>
+        <p>Fast referrals to trusted local imaging and labs, with results reviewed by your own GP.</p>
+      </article>
+    </div>
+
+    <div class="services-cta">
+      <a class="btn btn--primary btn--lg" href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener"><svg><use href="#i-calendar"></use></svg> Book Now</a>
+      <a class="btn btn--outline btn--lg" href="/medical-services-pallara/">View all services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ALTERNATING CONTENT
+     ============================================================ -->
+<section class="section section--tint">
+  <div class="container">
+
+    <div class="split reveal">
+      <div class="split-media">
+        <img class="img-main" src="https://www.pallaradoctors.com.au/wp-content/uploads/2025/06/about-img.jpg" width="749" height="620" alt="Pallara Medical GP clinic reception" loading="lazy">
+        <img class="img-sub" src="https://www.pallaradoctors.com.au/wp-content/uploads/2025/06/about-one.jpg" width="431" height="253" alt="Doctor consulting with a patient" loading="lazy">
+      </div>
+      <div class="split-body">
+        <p class="eyebrow">About Pallara Medical</p>
+        <h2>A Local GP Clinic Built Around Your Family</h2>
+        <p>Quality healthcare begins with trust, genuine compassion and a strong connection to our community. From the moment you walk through our doors, your wellbeing is the priority.</p>
+        <ul class="ticks">
+          <li><svg><use href="#i-check"></use></svg> Experienced GPs and friendly nursing staff</li>
+          <li><svg><use href="#i-check"></use></svg> Continuity of care — see the same doctor each visit</li>
+          <li><svg><use href="#i-check"></use></svg> Modern clinic with on-site treatment rooms</li>
+          <li><svg><use href="#i-check"></use></svg> Free parking at Pallara Shopping Village</li>
+        </ul>
+        <a class="btn btn--primary" href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener">Book Now</a>
+      </div>
+    </div>
+
+    <div class="split split--rev reveal">
+      <div class="split-media">
+        <img class="img-main" src="https://www.pallaradoctors.com.au/wp-content/uploads/2025/07/supporting-every-stage-img-large.png" width="749" height="620" alt="GP supporting a patient" loading="lazy">
+        <img class="img-sub" src="https://www.pallaradoctors.com.au/wp-content/uploads/2025/07/supporting-every-stage-img-small.png" width="431" height="253" alt="Family healthcare at Pallara Medical" loading="lazy">
+      </div>
+      <div class="split-body">
+        <p class="eyebrow">Every Stage of Life</p>
+        <h2>Care That Grows With You</h2>
+        <p>For our youngest patients we offer immunisations, developmental checks and gentle care for common childhood illnesses. As families grow, we support adolescent health, adult screening and preventative advice.</p>
+        <p>Women's health is a core strength — from contraception and antenatal care through to cervical screening and menopause management. Men's health is equally prioritised with preventative screening and lifestyle support.</p>
+        <a class="btn btn--primary" href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener">Book Now</a>
+      </div>
+    </div>
+
+    <div class="split reveal">
+      <div class="split-media">
+        <img class="img-main" src="https://www.pallaradoctors.com.au/wp-content/uploads/2025/07/lifelong-health-img-large.png" width="749" height="620" alt="Chronic care consultation" loading="lazy">
+        <img class="img-sub" src="https://www.pallaradoctors.com.au/wp-content/uploads/2025/07/lifelong-health-img-small.png" width="431" height="253" alt="Health assessment at Pallara Medical" loading="lazy">
+      </div>
+      <div class="split-body">
+        <p class="eyebrow">Chronic &amp; Preventative Care</p>
+        <h2>Lifelong Health Management</h2>
+        <p>Our GPs create structured care plans for diabetes, asthma, hypertension and heart disease — with regular monitoring, medication reviews and coordinated care alongside your specialists.</p>
+        <p>We also provide comprehensive health assessments for older adults and support for mental health and emotional wellbeing at every age.</p>
+        <a class="btn btn--primary" href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener">Book Now</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     STATS
+     ============================================================ -->
+<section class="section stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat"><b>Same&nbsp;Day</b><span>Appointments often available</span></div>
+      <div class="stat"><b>6 Days</b><span>Open Monday to Saturday</span></div>
+      <div class="stat"><b>20+</b><span>Services offered on site</span></div>
+      <div class="stat"><b>60 sec</b><span>Average online booking time</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TEAM
+     ============================================================ -->
+<section class="section team">
+  <div class="container">
+    <div>
+      <p class="eyebrow">Our Team</p>
+      <h2>Dedicated Doctors, Nurses &amp; Healthcare Practitioners</h2>
+      <p>Pallara Medical takes pride in its roster of local healthcare practitioners. We partner with you for your best health outcomes, and our friendly staff are always ready to help.</p>
+      <a class="btn btn--white btn--lg" href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener"><svg><use href="#i-calendar"></use></svg> Book With Our Team</a>
+    </div>
+    <div class="team-media">
+      <img src="https://www.pallaradoctors.com.au/wp-content/uploads/2025/06/our-team.jpg" width="960" height="755" alt="The Pallara Medical team" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA BAND
+     ============================================================ -->
+<section class="section cta-band">
+  <div class="container">
+    <h2>Ready to See a Doctor in Pallara?</h2>
+    <p>Choose your doctor, pick a time that suits you and confirm in under a minute — no phone queue required.</p>
+    <div class="btns">
+      <a class="btn btn--white btn--lg" href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener"><svg><use href="#i-calendar"></use></svg> Book Now</a>
+      <a class="btn btn--ghost btn--lg" href="tel:0731007111"><svg><use href="#i-phone"></use></svg> Call 07 3100 7111</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT + MAP + FORM
+     ============================================================ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Contact Us</p>
+      <h2>Find Us, Call Us or Send a Message</h2>
+      <p class="lead">We're in Pallara Shopping Village with free parking at the door. Send an enquiry and our reception team will be in touch.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <ul class="contact-list">
+          <li>
+            <span class="ci"><svg><use href="#i-pin"></use></svg></span>
+            <div><b>Visit us</b><a href="https://maps.app.goo.gl/7j12vx4kuDp2psLbA" target="_blank" rel="noopener">Pallara Shopping Village, Tenancy T4.1 – 201 Gooderham Rd, Pallara QLD 4110</a></div>
+          </li>
+          <li>
+            <span class="ci"><svg><use href="#i-phone"></use></svg></span>
+            <div><b>Phone</b><a href="tel:0731007111">07 3100 7111</a></div>
+          </li>
+          <li>
+            <span class="ci"><svg><use href="#i-fax"></use></svg></span>
+            <div><b>Fax</b><a href="tel:0731007110">07 3100 7110</a></div>
+          </li>
+          <li>
+            <span class="ci"><svg><use href="#i-mail"></use></svg></span>
+            <div><b>Email</b><a href="mailto:info@pallaradoctors.com.au">info@pallaradoctors.com.au</a></div>
+          </li>
+          <li>
+            <span class="ci"><svg><use href="#i-clock"></use></svg></span>
+            <div><b>Hours</b><span>Mon – Fri 8:30am – 4:30pm · Sat by appointment · Sun closed</span></div>
+          </li>
+        </ul>
+
+        <div class="map-embed">
+          <iframe title="Map to Pallara Medical, Pallara Shopping Village"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3535.5424851160637!2d153.00839507636888!3d-27.60771062260237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b914f00117c90f9%3A0xa7696e267832c141!2sPallara%20Shopping%20Village!5e0!3m2!1sen!2sau!4v1757056335106!5m2!1sen!2sau"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h2 style="font-size:clamp(1.4rem,1.9vw,1.85rem)">Make Your Appointment</h2>
+        <p class="form-sub" style="color:var(--muted);font-size:.95rem;margin-bottom:22px">Complete the form and we'll be in touch shortly — or <a href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener"><strong>book online instantly</strong></a>.</p>
+        <form class="js-form" novalidate>
+          <div class="form-grid">
+            <div class="field"><label for="c-name">Full name*</label><input id="c-name" name="name" type="text" placeholder="Jane Smith" required></div>
+            <div class="field"><label for="c-phone">Phone*</label><input id="c-phone" name="phone" type="tel" placeholder="0400 000 000" required></div>
+            <div class="field"><label for="c-email">Email*</label><input id="c-email" name="email" type="email" placeholder="you@email.com" required></div>
+            <div class="field"><label for="c-doctor">Preferred doctor</label>
+              <select id="c-doctor" name="doctor">
+                <option value="">Next available GP</option>
+                <option>Dr Navjot Brar</option>
+              </select>
+            </div>
+            <div class="field"><label for="c-date">Preferred date*</label><input id="c-date" name="date" type="date" required></div>
+            <div class="field"><label for="c-time">Preferred time*</label>
+              <select id="c-time" name="time" required>
+                <option value="">Select a time</option>
+                <option>8:30 AM – 10:00 AM</option>
+                <option>10:00 AM – 12:00 PM</option>
+                <option>12:00 PM – 2:00 PM</option>
+                <option>2:00 PM – 4:30 PM</option>
+              </select>
+            </div>
+            <div class="field field--full"><label for="c-notes">Additional information</label><textarea id="c-notes" name="notes" rows="4" placeholder="Let us know how we can help"></textarea></div>
+          </div>
+          <button class="btn btn--primary btn--block btn--lg" type="submit" style="margin-top:16px">Get Appointment</button>
+          <p class="form-foot"><svg><use href="#i-shield"></use></svg> For medical emergencies call 000. This form is not monitored after hours.</p>
+          <p class="form-status" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GLOBAL FOOTER  (this block will be replaced by the site-wide footer)
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://www.pallaradoctors.com.au/wp-content/uploads/2025/06/logo.png" width="193" height="73" alt="Pallara Medical" loading="lazy">
+        <h4>Contact With Us</h4>
+        <ul class="footer-contact">
+          <li><svg><use href="#i-pin"></use></svg><a href="https://maps.app.goo.gl/7j12vx4kuDp2psLbA" target="_blank" rel="noopener">Pallara Shopping Village, Tenancy T4.1 – 201 Gooderham Rd, Pallara QLD 4110</a></li>
+          <li><svg><use href="#i-mail"></use></svg><a href="mailto:info@pallaradoctors.com.au">info@pallaradoctors.com.au</a></li>
+          <li><svg><use href="#i-phone"></use></svg><a href="tel:0731007111">07 3100 7111</a></li>
+          <li><svg><use href="#i-fax"></use></svg><a href="tel:0731007110">07 3100 7110</a></li>
+        </ul>
+        <ul class="footer-socials">
+          <li><a href="https://www.facebook.com/share/14Z8hMAbeik/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"></use></svg></a></li>
+          <li><a href="https://www.instagram.com/pallaramedical" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"></use></svg></a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Useful Links</h4>
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/patient-info/">Patient Info</a></li>
+          <li><a href="/policies/">Policies</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="/contraceptives-pallara/">Contraceptives</a></li>
+          <li><a href="/x-ray-referral-pallara/">Referrals &amp; X-Rays</a></li>
+          <li><a href="/wound-dressing-pallara/">Wound Dressings</a></li>
+          <li><a href="/minor-surgery-pallara/">Surgery &amp; Procedures</a></li>
+          <li><a href="/maternity-care-pallara/">Maternity Care</a></li>
+          <li><a href="/medical-certificate-for-motor-vehicle-driver-pallara/">Driving Licence – Taxi &amp; Uber</a></li>
+          <li><a href="/vaccination-pallara/">Vaccinations</a></li>
+        </ul>
+        <a class="btn btn--primary" style="margin-top:22px" href="https://automedsystems.com.au/ams/clinics/12390/pallara-medical-pallara-4110/doctors" target="_blank" rel="noopener">Book Now</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <span>Copyright © <span id="year">2026</span> Pallara Medical. All Rights Reserved.</span>
+      <span>Designed by <a href="https://www.digitalmovement.com.au" target="_blank" rel="noopener">Digital Movement</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Floating call button (mobile, bottom centre) ===== -->
+<a class="floating-call" href="tel:0731007111" aria-label="Call Pallara Medical now on 07 3100 7111">
+  <svg><use href="#i-phone"></use></svg> Call Now
+</a>
+
+<script>
+(function(){
+  /* ---- Keep the mobile drawer flush under the real header height ---- */
+  var header = document.querySelector('.site-header');
+  function syncHeaderHeight(){
+    document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+  }
+  syncHeaderHeight();
+  window.addEventListener('resize', syncHeaderHeight);
+
+  /* ---- Mobile nav ---- */
+  var toggle = document.getElementById('nav-toggle');
+  toggle.addEventListener('click', function(){
+    var open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    toggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+    document.body.classList.toggle('nav-open', !open);
+  });
+
+  /* ---- Sub-menu accordions (mobile only) ---- */
+  document.querySelectorAll('.has-sub > a').forEach(function(link){
+    link.addEventListener('click', function(e){
+      if (window.innerWidth > 1024) return;
+      e.preventDefault();
+      var li = link.parentElement;
+      li.classList.toggle('open');
+      link.setAttribute('aria-expanded', String(li.classList.contains('open')));
+    });
+  });
+
+  /* ---- Close the menu when a real link is tapped ---- */
+  document.querySelectorAll('.site-nav a').forEach(function(a){
+    a.addEventListener('click', function(){
+      if (a.parentElement.classList.contains('has-sub')) return;
+      document.body.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded','false');
+    });
+  });
+
+  /* ---- Date inputs cannot be set in the past ---- */
+  var today = new Date().toISOString().split('T')[0];
+  document.querySelectorAll('input[type="date"]').forEach(function(i){ i.min = today; });
+
+  /* ---- Front-end form validation (no backend on this standalone page) ---- */
+  document.querySelectorAll('.js-form').forEach(function(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var status = form.querySelector('.form-status');
+      var missing = [].filter.call(form.querySelectorAll('[required]'), function(f){ return !f.value.trim(); });
+      var email = form.querySelector('input[type="email"]');
+      if (missing.length){
+        status.textContent = 'Please complete the required fields so we can get back to you.';
+        status.style.background = '#fdecec'; status.style.color = '#a12525';
+        status.classList.add('is-visible');
+        missing[0].focus();
+        return;
+      }
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){
+        status.textContent = 'That email address does not look right — please check it.';
+        status.style.background = '#fdecec'; status.style.color = '#a12525';
+        status.classList.add('is-visible');
+        email.focus();
+        return;
+      }
+      status.textContent = 'Thanks! Your request has been received — our reception team will confirm your appointment shortly.';
+      status.style.background = ''; status.style.color = '';
+      status.classList.add('is-visible');
+      form.reset();
+    });
+  });
+
+  /* ---- Reveal on scroll ---- */
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, {rootMargin:'0px 0px -60px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ---- Footer year ---- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

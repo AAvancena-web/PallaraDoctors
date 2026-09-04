@@ -162,9 +162,12 @@ html body #site-navigation .menu-main-menu-container #primary-menu{
 }
 html body #site-navigation .menu-main-menu-container #primary-menu li a{
   color:var(--pmg-ink);font-family:var(--pmg-head);font-weight:600;
-  font-size:15px;line-height:1.2;padding:18px 22px;
+  font-size:15px;line-height:1.2;padding:18px clamp(10px,1.4vw,22px);
   border-radius:8px;transition:color .2s ease,background .2s ease;
   position:relative;
+  /* the redesign sets the menu in sentence case; the theme's uppercase
+     costs about 12% width, which is what pushed Contact under the CTAs */
+  text-transform:none;
 }
 html body #site-navigation .menu-main-menu-container #primary-menu li a:hover{
   background-color:var(--pmg-blue-tint);color:var(--pmg-blue);
@@ -208,6 +211,20 @@ html body #primary-menu .sub-menu li a:hover{
 html body .header-menu #primary-menu .sub-menu li{border-bottom:0}
 
 /* ============================================================
+   Inner pages: reclaim the sidebar gutter
+
+   The parent theme reserves a 34% right margin with .sidebar .site-main,
+   which the body carries even on pages laid out without a sidebar - it
+   leaves inner pages squeezed into two thirds of the container. Cleared
+   only where the page itself declares no sidebar, so real sidebar layouts
+   are untouched.
+   ============================================================ */
+html body.page-layout-no-sidebar .site-main,
+html body.page-layout-no-sidebar .content-area{margin-right:0;float:none;width:100%}
+html body.no-sidebar .site-main{margin-right:0}
+html body #content:not(:has(#secondary)) .site-main{margin-right:0}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 html body .site-footer{background-color:var(--pmg-ink);border-top:4px solid var(--pmg-blue)}
@@ -232,7 +249,7 @@ html body .site-footer .widget ul li{line-height:1.5}
 
 /* contact list icons */
 html body .site-footer .info-contact li{margin-bottom:14px}
-html body .site-footer .info-contact li a{
+html body .site-footer .widgets .widget .info-contact li a{
   display:flex;align-items:flex-start;gap:12px;padding-left:0;
 }
 html body .site-footer .info-contact li a::before{
@@ -391,8 +408,12 @@ html body #masthead.pm-header-v2 .pm-topbar .header-social-icons a:hover{backgro
   html body #masthead.pm-header-v2 .site-branding{flex:none;padding:0}
   html body #masthead.pm-header-v2 .site-branding .custom-logo-link .custom-logo{width:186px}
   html body #masthead.pm-header-v2 .header-menu{
-    flex:1 1 auto;min-width:0;background:transparent;border:0;
+    flex:0 1 auto;min-width:0;background:transparent;border:0;
+    display:flex;justify-content:center;
   }
+  html body #masthead.pm-header-v2 #site-navigation{max-width:100%;min-width:0}
+  html body #masthead.pm-header-v2 .site-branding{margin-right:auto}
+  html body #masthead.pm-header-v2 .pm-header-actions{margin-left:auto}
   html body #masthead.pm-header-v2 .header-menu .corp-container{max-width:none !important;padding:0}
   html body #masthead.pm-header-v2 #site-navigation{justify-content:center}
   /* the theme spreads the menu across 100% with space-between, which makes the
@@ -402,7 +423,7 @@ html body #masthead.pm-header-v2 .pm-topbar .header-social-icons a:hover{backgro
     width:auto;justify-content:center;flex-wrap:nowrap;gap:2px;
   }
   html body #masthead.pm-header-v2 #site-navigation .menu-main-menu-container #primary-menu li a{
-    padding:12px 16px;white-space:nowrap;
+    padding:12px clamp(7px,1vw,16px);white-space:nowrap;text-transform:none;
   }
   html body #masthead.pm-header-v2 #primary-menu .sub-menu li a{white-space:normal}
 
@@ -448,8 +469,12 @@ html body #masthead.pm-header-v2 .pm-topbar .header-social-icons a:hover{backgro
   html body #masthead.pm-header-v2 .pm-header-phone{font-size:17px}
   html body #masthead.pm-header-v2 .pm-header-book{padding:14px 22px;font-size:14px}
 }
-@media (min-width:1025px) and (max-width:1260px){
+@media (min-width:1025px) and (max-width:1500px){
   html body #masthead.pm-header-v2 .pm-header-phone small{display:none}
+}
+@media (min-width:1025px) and (max-width:1320px){
+  /* icon only - the number still shows in the strip above */
+  html body #masthead.pm-header-v2 .pm-header-phone span:last-child{display:none}
   html body #masthead.pm-header-v2 .pm-topbar .header-top .loction-icon{display:none}
 }
 @media (max-width:1024px){

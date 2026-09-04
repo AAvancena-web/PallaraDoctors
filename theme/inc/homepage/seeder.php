@@ -6,10 +6,10 @@
  * pallara_hp_defaults() into the ACF fields so the client starts with real,
  * editable content instead of empty boxes.
  *
- * Safety: the seeder never touches an existing published page. If no page is
- * using the template yet it creates a NEW DRAFT ("Home (Redesign)") and seeds
- * that, so the live homepage is unchanged until someone deliberately switches
- * over.
+ * Safety: the seeder creates nothing and waits. It only acts once a page has
+ * been assigned the "Homepage - Pallara Redesign" template, and even then it
+ * only fills fields that are empty, so it can never overwrite content someone
+ * has already written. Use --force to overwrite deliberately.
  *
  * Re-run manually with either:
  *   wp pallara seed-homepage [--force]
@@ -60,39 +60,6 @@ function pallara_hp_find_page() {
 	);
 
 	return empty( $pages ) ? 0 : (int) $pages[0];
-}
-
-/**
- * Get (or create) the page to seed.
- *
- * @return int Page ID, or 0 on failure.
- */
-function pallara_hp_target_page() {
-	$page_id = pallara_hp_find_page();
-
-	if ( $page_id ) {
-		return $page_id;
-	}
-
-	$page_id = wp_insert_post(
-		array(
-			'post_title'   => 'Home (Redesign)',
-			'post_name'    => 'home-redesign',
-			'post_type'    => 'page',
-			'post_status'  => 'draft',
-			'post_content' => '',
-			'meta_input'   => array(
-				'_wp_page_template' => PALLARA_HP_TEMPLATE,
-			),
-		),
-		true
-	);
-
-	if ( is_wp_error( $page_id ) ) {
-		return 0;
-	}
-
-	return (int) $page_id;
 }
 
 /**
@@ -227,10 +194,10 @@ function pallara_hp_run_seeder( $force = false ) {
 		return $result;
 	}
 
-	$page_id = pallara_hp_target_page();
+	$page_id = pallara_hp_find_page();
 
 	if ( ! $page_id ) {
-		$result['message'] = 'The homepage seeder could not find or create a page to seed.';
+		$result['message'] = 'No page is using the "Homepage - Pallara Redesign" template yet, so there was nothing to seed.';
 
 		return $result;
 	}
@@ -261,6 +228,11 @@ function pallara_hp_maybe_seed() {
 	}
 
 	if ( ! current_user_can( 'edit_pages' ) ) {
+		return;
+	}
+
+	// Nothing to do until the template has been assigned to a page.
+	if ( ! pallara_hp_find_page() ) {
 		return;
 	}
 
@@ -297,6 +269,40 @@ function pallara_hp_seed_notice() {
 	);
 }
 add_action( 'admin_notices', 'pallara_hp_seed_notice' );
+
+/**
+ * Tell the editor what to do while the template has not been assigned yet.
+ *
+ * Shown on the Dashboard and the Pages screens only, and only until the
+ * content has been seeded.
+ *
+ * @return void
+ */
+function pallara_hp_pending_notice() {
+	if ( PALLARA_HP_SEED_VERSION === get_option( PALLARA_HP_SEED_OPTION ) ) {
+		return;
+	}
+
+	if ( ! current_user_can( 'edit_pages' ) || pallara_hp_find_page() ) {
+		return;
+	}
+
+	if ( ! function_exists( 'get_current_screen' ) ) {
+		return;
+	}
+
+	$screen = get_current_screen();
+
+	if ( ! $screen || ! in_array( $screen->id, array( 'dashboard', 'edit-page', 'page' ), true ) ) {
+		return;
+	}
+
+	printf(
+		'<div class="notice notice-info"><p><strong>Pallara homepage redesign is installed.</strong> %s</p></div>',
+		esc_html( 'Open the Home page, set Page Attributes, Template to "Homepage - Pallara Redesign" and update. The redesign content will fill itself in automatically.' )
+	);
+}
+add_action( 'admin_notices', 'pallara_hp_pending_notice' );
 
 /**
  * Manual re-run endpoint for administrators.

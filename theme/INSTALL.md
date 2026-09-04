@@ -87,72 +87,59 @@ remove the line, fix the paths, add it back.
 
 ---
 
-## Step 3 - Let the seeder run
+## Step 3 - Assign the template to the Home page
 
-Load any admin page (the Dashboard is fine). Two things happen automatically:
+Open **Pages, Home** (the existing homepage, do not create a new one). In the
+right-hand column under **Page Attributes**, change **Template** from Default
+to **Homepage - Pallara Redesign**, then click **Update**.
 
-1. A new page is created: **Home (Redesign)**, saved as a **draft**, with the
-   "Homepage - Pallara Redesign" template already assigned.
-2. Every ACF field on it is filled with the redesign content.
+Two things to know before you click:
 
-You will see a green notice: *"Pallara homepage: Seeded 40 homepage fields
-into Home (Redesign)"* with an **Edit the page** link.
+- **This is live immediately.** The homepage switches to the new layout as
+  soon as you update. Do it at a quiet time, or run through this on staging
+  first.
+- **Nothing is destroyed.** The existing WPBakery content stays in the page
+  exactly as it is, the template simply does not render it. Setting the
+  template back to Default restores the old homepage exactly as it was.
 
-Nothing on the live site has changed at this point. The existing Home page is
-untouched.
+## Step 4 - The content seeds itself
 
-*If you see a warning instead of a green notice, see Troubleshooting below.*
+The moment a page is using the template, the seeder fills in every redesign
+field on it and shows a green notice:
 
----
+> **Pallara homepage:** Seeded 40 homepage fields into "Home" (page 6).
 
-## Step 4 - Preview and edit
+It only fills fields that are **empty**, so it can never overwrite something
+you have written. It runs once; after that the content is yours to edit.
 
-Open **Pages, Home (Redesign)**, then click **Preview**.
+If the fields look empty, reload the page editor once. To force a re-seed at
+any time, see Troubleshooting.
 
-Scroll down the edit screen to the **Homepage (Pallara Redesign)** panel. The
-content is split into tabs: Hero, Hero form, Quick info cards, Services,
-Content sections, Stats band, Team band, CTA band, Contact, and Phone and
-floating button.
+## Step 5 - Edit the content
+
+Still on the Home page edit screen, scroll to the **Homepage (Pallara
+Redesign)** panel. The content is split into tabs: Hero, Hero form, Quick info
+cards, Services, Content sections, Stats band, Team band, CTA band, Contact,
+and Phone and floating button.
 
 Anything with an **Add** button is a repeater: add, delete and drag rows to
 reorder. Leave a field empty and it falls back to the packaged default, so you
 cannot break the layout by clearing something.
 
 To swap the images, use the image fields (Hero background image, the Main and
-Inset image on each content section, and Team photo).
-
----
-
-## Step 5 - Go live
-
-Two ways, pick one:
-
-**A. Replace the existing homepage (recommended)**
-1. Edit **Home (Redesign)**, set the Permalink to something temporary, publish
-   it, and confirm it looks right on the front end.
-2. Edit the existing **Home** page and change **Page Attributes, Template** to
-   **Homepage - Pallara Redesign**.
-3. Copy the field content across, or just re-run the seeder against it:
-   `wp pallara seed-homepage --force`
-4. Delete the draft.
-
-**B. Point the front page at the new page**
-1. Publish **Home (Redesign)**.
-2. **Settings, Reading, Your homepage displays, A static page**, and pick it.
-3. Update the permalink to `/` behaviour by leaving the old Home page as a
-   draft or deleting it.
-
-Option A keeps the existing page ID, its permalink, and anything pointing at
-it, so it is the safer of the two.
-
----
+Inset image on each content section, and Team photo). Until then the page uses
+the existing images from the media library.
 
 ## Step 6 - Optional: the header.php edit
 
 `header.php` prints the shared banner (featured image plus the CF7 banner
 form) on every page. The new template supplies its own hero, so the stylesheet
-already hides it and **the page looks correct without this step**. Making the
-edit stops the browser downloading a banner image nobody sees.
+already hides it and **the page looks correct without this step**.
+
+It is worth doing anyway on the Home page specifically: that page has a 1920px
+featured image set, and without the edit the browser still downloads it on
+every visit for a block nobody sees. It also stops a second Contact Form 7
+form being initialised behind the hidden block.
 
 Full instructions: `theme/patches/header.php.md`.
 
@@ -192,14 +179,24 @@ hidden by the stylesheet on this template, so this means the CSS did not load
 out of `.corp-container`. If a plugin adds another wrapper, tell me and I will
 adjust the escape.
 
-**I want to start the content again.** `wp pallara seed-homepage --force`
-overwrites every field with the packaged defaults.
+**The fields are empty / I want to start the content again.**
+`wp pallara seed-homepage --force` overwrites every field with the packaged
+defaults. Without WP-CLI, visit
+`/wp-admin/admin-post.php?action=pallara_hp_seed` as an administrator.
+
+**Where did my old homepage content go?** Nowhere. It is still in the page,
+the template just does not output it. Set Page Attributes, Template back to
+Default to bring it back.
 
 ---
 
 ## Rollback
 
-Remove the `require_once` line from `functions.php`. The template and all its
-assets go dormant immediately; if a page was using the template it falls back
-to the default page layout. Delete the uploaded files at your leisure. The
-seeded content stays in the database as ordinary post meta and does no harm.
+**Fastest:** edit the Home page and set **Page Attributes, Template** back to
+**Default**. The old WPBakery homepage comes straight back, untouched.
+
+**Full removal:** also delete the `require_once` line from `functions.php`.
+The template and all its assets go dormant immediately, and the uploaded files
+can be deleted at your leisure. The seeded content stays in the database as
+ordinary post meta, does no harm, and will still be there if you re-enable
+the template later.

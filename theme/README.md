@@ -33,20 +33,21 @@ patches/header.php.md            The one optional edit to header.php
    require_once get_stylesheet_directory() . '/inc/homepage/bootstrap.php';
    ```
 
-3. Load any admin page. The seeder runs once, creates a **draft** page called
-   **Home (Redesign)** with the template assigned, and fills in every field.
-   An admin notice links straight to it.
-4. Preview the draft, then when you are happy: either set it as the front page
-   (Settings, Reading) or switch the existing Home page to the
-   "Homepage - Pallara Redesign" template.
+3. Edit the existing Home page and set **Page Attributes, Template** to
+   **Homepage - Pallara Redesign**, then update. This switches the live
+   homepage over immediately; the page's existing WPBakery content is left
+   untouched, so setting the template back to Default restores it exactly.
+4. The seeder fills in every redesign field on that page automatically, and
+   says so in an admin notice. It only writes to fields that are empty.
 5. Optional: apply `patches/header.php.md`.
 
-The seeder never edits an existing published page, so nothing on the live site
-changes until step 4.
+The seeder never creates a page and never overwrites content that is already
+there. Step-by-step version: `INSTALL.md`.
 
 ## Re-running the seeder
 
-It is guarded by the `pallara_hp_seeded` option, so it runs once. To re-run and
+It waits until a page is using the template, then runs once (guarded by the
+`pallara_hp_seeded` option) and fills only empty fields. To re-run and
 overwrite the current field values with the packaged defaults:
 
 ```bash

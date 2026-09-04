@@ -93,7 +93,6 @@ function pallara_hp_register_fields() {
 			'label_placement'       => 'top',
 			'active'                => true,
 			'description'           => 'Content for the "Homepage - Pallara Redesign" page template. Any field left empty falls back to the packaged default copy.',
-			'hide_on_screen'        => array( 'the_content' ),
 			'location'              => array(
 				array(
 					array(

@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
 
 const PALLARA_HP_TEMPLATE     = 'template-homepage.php';
 const PALLARA_HP_SEED_OPTION  = 'pallara_hp_seeded';
-const PALLARA_HP_SEED_VERSION = '1.0.0';
+const PALLARA_HP_SEED_VERSION = '1.0.1';
 const PALLARA_HP_NOTICE       = 'pallara_hp_seed_notice';
 
 /**
@@ -127,6 +127,27 @@ function pallara_hp_prepare_value( $name, $value ) {
 }
 
 /**
+ * Has this field ever been saved on this page?
+ *
+ * Deliberately reads the raw post meta rather than get_field(). ACF returns
+ * false for an empty repeater, which is indistinguishable from a genuine
+ * false on a true/false field - checking the meta row instead tells us
+ * whether anyone has actually written a value, whatever the field type.
+ *
+ * An editor who empties a repeater leaves a "0" row behind, and that counts
+ * as a real value: the seeder will not put the rows back.
+ *
+ * @param int    $page_id Page ID.
+ * @param string $name    ACF field name.
+ * @return bool
+ */
+function pallara_hp_field_has_value( $page_id, $name ) {
+	$existing = get_post_meta( $page_id, $name, true );
+
+	return '' !== $existing && null !== $existing;
+}
+
+/**
  * Write the default content into the page's ACF fields.
  *
  * @param int  $page_id  Page to seed.
@@ -141,12 +162,8 @@ function pallara_hp_seed_page( $page_id, $overwrite = true ) {
 	$written = 0;
 
 	foreach ( pallara_hp_defaults() as $name => $value ) {
-		if ( ! $overwrite ) {
-			$existing = get_field( $name, $page_id );
-
-			if ( ! pallara_hp_is_blank( $existing ) ) {
-				continue;
-			}
+		if ( ! $overwrite && pallara_hp_field_has_value( $page_id, $name ) ) {
+			continue;
 		}
 
 		$prepared = pallara_hp_prepare_value( $name, $value );

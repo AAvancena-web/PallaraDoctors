@@ -328,3 +328,41 @@ html body.page-template-template-homepage #yoast-breadcrumbs{display:none !impor
 /* #content adds vertical padding that would double up on the hero band */
 html body.page-template-template-homepage #content.site-content{padding-top:0}
 html body.page-template-template-homepage #content > .corp-container{padding-left:0;padding-right:0}
+
+/* ============================================================
+   Mobile: centre the content
+
+   Everything reads centred on a narrow screen except the things that do
+   not suit it - ticked lists, contact rows, form fields and the
+   label/value hours rows all stay left aligned so they remain scannable.
+   ============================================================ */
+@media (max-width:768px){
+  html body .pm-home .pm-hero-copy,
+  html body .pm-home .pm-split-body,
+  html body .pm-home .pm-section-head,
+  html body .pm-home .pm-quick-card,
+  html body .pm-home .pm-team .pm-container > div,
+  html body .pm-home .pm-booking-card > h2,
+  html body .pm-home .pm-contact-form > h2,
+  html body .pm-home .pm-form-sub{text-align:center}
+
+  html body .pm-home .pm-eyebrow{justify-content:center}
+  html body .pm-home .pm-hero-badges,
+  html body .pm-home .pm-hero-actions,
+  html body .pm-home .pm-services-cta,
+  html body .pm-home .pm-hero-note{justify-content:center;text-align:center}
+
+  html body .pm-home .pm-quick-card{flex-direction:column;align-items:center}
+  html body .pm-home .pm-quick-card .pm-qlink{justify-content:center}
+
+  /* deliberately left aligned */
+  html body .pm-home .pm-ticks,
+  html body .pm-home .pm-ticks li,
+  html body .pm-home .pm-contact-list,
+  html body .pm-home .pm-contact-list li,
+  html body .pm-home .pm-field,
+  html body .pm-home .pm-field label,
+  html body .pm-home .pm-form-foot,
+  html body .pm-home .pm-hours-row{text-align:left}
+  html body .pm-home .pm-ticks{display:inline-grid;text-align:left}
+}

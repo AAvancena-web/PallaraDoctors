@@ -20,7 +20,7 @@ html body #site-navigation .mobile-call-menu{display:none}
 @media (max-width:1024px){
   /* header.php order: menu, socials, call widget, hamburger */
   html body #site-navigation{align-items:center}
-  html body #site-navigation .mobile-call-menu{display:flex;align-items:center;margin-top:15px}
+  html body #site-navigation .mobile-call-menu{display:flex;align-items:center;margin:0}
   html body #site-navigation .mobile-call-menu .textwidget,
 html body #site-navigation .mobile-call-menu .call-mobile{display:flex;align-items:center}
 
@@ -44,8 +44,22 @@ html body .pm-phone-circle:focus{background:#3257a8;border-color:#3257a8}
   }
   html body .pm-phone-circle svg{width:19px;height:19px;fill:#fff}
 
-  /* keep the hamburger vertically centred against the new circle */
-  html body .hamburger--collapse.reflex-menu-toggle{top:0;margin-top:15px}
+  /* hamburger: same 44px box as the phone button, bars centred inside it */
+  html body .hamburger--collapse.reflex-menu-toggle{
+    position:relative;top:0;right:0;margin:0;
+    width:44px;height:44px;border:0;border-radius:50%;
+    background:transparent;padding:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  html body .hamburger--collapse.reflex-menu-toggle span{
+    left:11px;width:22px;height:2px;border-radius:2px;background:#272727;
+  }
+  html body .hamburger--collapse.reflex-menu-toggle span:nth-child(1){top:15px}
+  html body .hamburger--collapse.reflex-menu-toggle span:nth-child(2){top:21px}
+  html body .hamburger--collapse.reflex-menu-toggle span:nth-child(3){top:27px}
+  html body .hamburger--collapse.reflex-menu-toggle.is-active span:nth-child(1),
+  html body .hamburger--collapse.reflex-menu-toggle.is-active span:nth-child(3){top:21px}
+  html body .hamburger--collapse.reflex-menu-toggle.is-active span:nth-child(2){opacity:0}
 }
 
 /* ---------- 2. Floating call button (mobile, bottom centre) ---------- */
@@ -67,8 +81,8 @@ html body .pm-floating-call:active{transform:translateX(-50%) scale(.97)}
 }
 @media (max-width:1024px){
   html body .pm-floating-call{display:inline-flex}
-  html body{padding-bottom:78px}
-  /* keep the theme's back-to-top button clear of the floating button */
+  /* clear the floating button without padding the whole page */
+  html body .site-footer .bottom-bar{padding-bottom:86px}
   html body #scroll-to-top{bottom:96px}
 }
 @media (prefers-reduced-motion:reduce){

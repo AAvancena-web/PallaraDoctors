@@ -66,6 +66,10 @@ html body .pm-phone-circle:focus{background:#3257a8;border-color:#3257a8}
 html body .pm-floating-call{
   display:none;position:fixed;left:50%;transform:translateX(-50%);
   bottom:calc(18px + env(safe-area-inset-bottom));z-index:9999;
+  /* left:50% leaves a fixed element only half the viewport to shrink-wrap
+     into, which broke "Call Now" onto two lines. max-content sizes it to
+     the label instead, capped so it can never touch the screen edges. */
+  width:max-content;max-width:calc(100vw - 32px);white-space:nowrap;
   align-items:center;gap:10px;padding:15px 30px;border-radius:999px;
   background:#3257a8;color:#fff !important;
   font-family:"Montserrat",sans-serif;font-weight:700;font-size:16px;

@@ -37,16 +37,28 @@
    Container width
 
    The theme caps .corp-container at 79.5%, which is narrower than the
-   redesign and leaves the header and footer misaligned with the page
-   content. Overridden here for the header and footer only - the rest of
-   the site keeps the theme's width. The !important matches the theme's
-   own, which cannot be beaten on specificity alone.
+   redesign and leaves the header, page content and footer on three
+   different left and right edges. One rule gives all three the same
+   max-width and the same gutter, so every band on the site lines up.
+   The !important matches the theme's own, which cannot be beaten on
+   specificity alone.
    ============================================================ */
 html body .site-header .corp-container,
-html body .site-footer .corp-container{
+html body .site-footer .corp-container,
+html body #content > .corp-container{
   max-width:var(--pmg-container) !important;
   padding-inline:var(--pmg-gutter);
   margin-inline:auto;
+}
+/* the theme's own 15px padding is on .corp-container itself, so it would
+   otherwise stack with the gutter above on some inner templates */
+html body #content > .corp-container{padding-left:var(--pmg-gutter);padding-right:var(--pmg-gutter)}
+
+/* The homepage template breaks .pm-home out to the viewport edges and
+   supplies its own gutter inside .pm-container, so the page-level gutter
+   is removed there. Kept next to the rule it cancels. */
+html body.page-template-template-homepage #content > .corp-container{
+  padding-left:0;padding-right:0;
 }
 
 /* ============================================================
@@ -229,8 +241,18 @@ html body #content:not(:has(#secondary)) .site-main{margin-right:0}
    ============================================================ */
 html body .site-footer{background-color:var(--pmg-ink);border-top:4px solid var(--pmg-blue)}
 html body .site-footer .widgets{padding-top:64px;padding-bottom:36px}
+/* The theme lays the widget columns out as floated 31% blocks, which on a
+   phone leaves each column about 110px wide - narrow enough that the
+   contact rows below collapse to one word per line. Declaring the grid
+   here, rather than assuming the theme's, keeps the column widths known
+   at every breakpoint; minmax(0,1fr) stops a long address blowing its
+   track out past its share. */
+html body .site-footer .widgets{display:grid}
+html body .site-footer .widgets.widgets-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+html body .site-footer .widgets.widgets-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 html body .site-footer .widgets.widgets-3,
 html body .site-footer .widgets.widgets-4{grid-gap:40px}
+html body .site-footer .widgets .widget{width:auto;float:none;margin-left:0;margin-right:0;min-width:0}
 
 html body .site-footer .widgets .widget .widget-title{
   font-family:var(--pmg-head);font-size:15px;font-weight:700;
@@ -249,11 +271,17 @@ html body .site-footer .widget ul li{line-height:1.5}
 
 /* contact list icons */
 html body .site-footer .info-contact li{margin-bottom:14px}
+/* A two-track grid rather than a flex row: the text gets its own
+   minmax(0,1fr) track and wraps at the column width, instead of
+   collapsing to min-content - one word per line - the way an anonymous
+   flex item does once the column gets narrow. */
 html body .site-footer .widgets .widget .info-contact li a{
-  display:flex;align-items:flex-start;gap:12px;padding-left:0;
+  display:grid;grid-template-columns:17px minmax(0,1fr);
+  align-items:start;gap:12px;padding-left:0;text-align:left;
+  overflow-wrap:break-word;
 }
 html body .site-footer .info-contact li a::before{
-  content:"";flex:none;width:17px;height:17px;margin-top:4px;
+  content:"";width:17px;height:17px;margin-top:4px;
 }
 html body .site-footer .loction-icon-footer,
 html body .site-footer .email-icon,
@@ -351,7 +379,11 @@ html body #site-navigation .menu-main-menu-container #primary-menu li a:hover{
 html body .site-footer .widgets.widgets-4{grid-template-columns:1fr;gap:34px;text-align:center}
   html body .site-footer .widgets .widget{margin-bottom:0}
   html body .site-footer .widgets .widget .widget-title::after{margin-left:auto;margin-right:auto}
-  html body .site-footer .info-contact li a{justify-content:center;text-align:left}
+  /* centre the icon+text block as a unit - justify-content would only
+     shift the tracks inside the grid and can push the icon off the edge */
+  html body .site-footer .widgets .widget .info-contact li a{
+    width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;text-align:left;
+  }
   html body .site-footer .info-contact li{margin-bottom:12px}
   html body .site-footer .footer-social-links{justify-content:center;margin-top:20px}
   html body .site-footer #menu-services{grid-template-columns:1fr}

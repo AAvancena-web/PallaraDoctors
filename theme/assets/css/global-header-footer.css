@@ -28,24 +28,31 @@
 /* ============================================================
    HEADER - dark utility strip
 
-   header.php keeps the contact details inside .site-header-inner next to
-   the logo. Lifting them out with absolute positioning gives the redesign's
-   full-width dark strip without touching the markup, and .textwidget is
-   re-inset to line up with .corp-container.
-   ============================================================ */
-html body .site-header{position:relative;padding-top:52px;background:#fff}
-html body .site-header .header-left-bars{
-  position:absolute;top:0;left:calc(50% - 50vw);
-  width:100vw;background:var(--pmg-ink);z-index:2;
-}
-html body .site-header .header-left-bars .textwidget{
-  max-width:79.5%;margin:0 auto;padding:0 15px;
-}
+   header.php keeps the contact details (.header-left-bars) inside
+   .site-header-inner, next to the logo. Rather than positioning it out of
+   the row - which anchors to whichever ancestor happens to be positioned -
+   the row is made a wrapping flex container and the strip is given a full
+   line above the logo with order:-1.
 
-/* ============================================================
-   HEADER - logo row
+   The negative margins pull it out to the viewport edges and the matching
+   padding puts its content back in line with .corp-container. 50% here is
+   half the container's content box, so 50vw - 50% is exactly the gap
+   between the viewport edge and the container - no magic numbers, and it
+   self-corrects when .corp-container goes full width under 1200px.
    ============================================================ */
-html body #masthead .site-header-inner{padding:18px 0 16px;gap:24px}
+html body .site-header{background:#fff}
+html body #masthead .site-header-inner{
+  display:flex;flex-wrap:wrap;align-items:center;
+  padding:0 0 16px;gap:0 24px;
+}
+html body #masthead .site-header-inner > .header-left-bars{
+  order:-1;flex:1 0 100%;width:auto;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+  padding-inline:calc(50vw - 50%);
+  background:var(--pmg-ink);
+}
+html body #masthead .site-header-inner > .site-branding{padding-block:16px}
 
 html body .site-header .site-branding{gap:14px}
 html body .site-header .site-branding .custom-logo-link .custom-logo{width:190px;height:auto}
@@ -290,4 +297,113 @@ html body #site-navigation .menu-main-menu-container #primary-menu li a:hover{
 @media (max-width:768px){
   html body .site-footer .widgets{padding-top:44px}
   html body .site-footer .widgets .widget .widget-title{margin-bottom:16px}
+}
+
+/* ============================================================
+   .pm-header-v2 - the restructured header
+
+   Only applies when patches/header-redesign.php has been dropped in over
+   header.php. That file puts the contact details in a .pm-topbar row and
+   the logo, navigation and CTAs on one row below, which is the layout the
+   CSS-only version cannot reach because the markup keeps them in separate
+   containers.
+   ============================================================ */
+html body #masthead.pm-header-v2{position:sticky;top:0;z-index:400;background:#fff}
+/* the theme's scroll scripts add .fixeds here and .fixed to .header-menu;
+   sticky already handles it, and letting them go position:fixed would tear
+   the single row apart */
+html body #masthead.pm-header-v2.fixeds{position:sticky !important;box-shadow:0 6px 24px rgba(26,49,98,.12) !important}
+html body #masthead.pm-header-v2 .header-menu.fixed{
+  position:static !important;width:auto;left:auto;top:auto;box-shadow:none !important;
+}
+
+/* ---- row 1: dark utility strip ---- */
+html body #masthead.pm-header-v2 .pm-topbar{background:var(--pmg-ink)}
+html body #masthead.pm-header-v2 .pm-topbar-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;min-height:46px;
+}
+html body #masthead.pm-header-v2 .pm-topbar .header-left-bars{width:auto;flex:1 1 auto;min-width:0}
+html body #masthead.pm-header-v2 .pm-topbar .header-top{min-height:46px}
+html body #masthead.pm-header-v2 .pm-topbar .header-top .call-icon{margin-left:0}
+/* BOOK NOW lives on the white row in this layout */
+html body #masthead.pm-header-v2 .pm-topbar .header-top .book-icon{display:none}
+html body #masthead.pm-header-v2 .pm-topbar .header-social-icons{display:flex;gap:10px;flex:none}
+html body #masthead.pm-header-v2 .pm-topbar .header-social-icons a{
+  width:30px;height:30px;background-color:var(--pmg-blue);
+}
+html body #masthead.pm-header-v2 .pm-topbar .header-social-icons a:hover{background-color:var(--pmg-blue-soft) !important}
+
+/* ---- row 2: logo | navigation | phone + BOOK NOW ---- */
+html body #masthead.pm-header-v2 .site-header-inner{
+  display:flex;flex-wrap:nowrap;align-items:center;
+  gap:clamp(14px,2vw,40px);padding:14px 0;
+}
+html body #masthead.pm-header-v2 .site-branding{flex:none;padding:0}
+html body #masthead.pm-header-v2 .site-branding .custom-logo-link .custom-logo{width:186px}
+html body #masthead.pm-header-v2 .header-menu{
+  flex:1 1 auto;min-width:0;background:transparent;border:0;
+}
+html body #masthead.pm-header-v2 .header-menu .corp-container{max-width:none !important;padding:0}
+html body #masthead.pm-header-v2 #site-navigation{justify-content:center}
+/* the theme spreads the menu across 100% with space-between, which makes the
+   labels wrap once they share a row with the logo and the CTAs */
+html body #masthead.pm-header-v2 #site-navigation .menu-main-menu-container{width:auto}
+html body #masthead.pm-header-v2 #site-navigation .menu-main-menu-container #primary-menu{
+  width:auto;justify-content:center;flex-wrap:nowrap;gap:2px;
+}
+html body #masthead.pm-header-v2 #site-navigation .menu-main-menu-container #primary-menu li a{
+  padding:12px 16px;white-space:nowrap;
+}
+
+html body #masthead.pm-header-v2 .pm-header-actions{
+  display:flex;align-items:center;gap:16px;flex:none;
+}
+html body #masthead.pm-header-v2 .pm-header-phone{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--pmg-head);font-weight:700;font-size:19px;
+  color:var(--pmg-ink);white-space:nowrap;
+}
+html body #masthead.pm-header-v2 .pm-header-phone small{
+  display:block;font-family:var(--pmg-sans);font-weight:400;font-size:11.5px;
+  color:var(--pmg-muted);text-transform:uppercase;letter-spacing:.11em;line-height:1.6;
+}
+html body #masthead.pm-header-v2 .pm-header-phone-icon{
+  display:flex;align-items:center;justify-content:center;flex:none;
+  width:46px;height:46px;border-radius:50%;background:var(--pmg-ink);
+  transition:background-color .2s ease;
+}
+html body #masthead.pm-header-v2 .pm-header-phone-icon svg{width:19px;height:19px;fill:#fff}
+html body #masthead.pm-header-v2 .pm-header-phone:hover{color:var(--pmg-blue)}
+html body #masthead.pm-header-v2 .pm-header-phone:hover .pm-header-phone-icon{background:var(--pmg-blue)}
+
+html body #masthead.pm-header-v2 .pm-header-book{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--pmg-blue);color:#fff;border-radius:8px;
+  padding:16px 30px;font-family:var(--pmg-head);font-weight:700;font-size:15px;
+  letter-spacing:.07em;text-transform:uppercase;line-height:1;white-space:nowrap;
+  box-shadow:0 10px 24px rgba(50,87,168,.28);
+  transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
+}
+html body #masthead.pm-header-v2 .pm-header-book:hover{
+  background:var(--pmg-blue-dark);color:#fff;transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(50,87,168,.38);
+}
+
+@media (max-width:1500px){
+  html body #masthead.pm-header-v2 .site-branding .custom-logo-link .custom-logo{width:158px}
+  html body #masthead.pm-header-v2 #site-navigation .menu-main-menu-container #primary-menu li a{padding:12px 11px;font-size:14px}
+  html body #masthead.pm-header-v2 .pm-header-phone{font-size:17px}
+  html body #masthead.pm-header-v2 .pm-header-book{padding:14px 22px;font-size:14px}
+}
+@media (max-width:1260px){
+  html body #masthead.pm-header-v2 .pm-header-phone small{display:none}
+  html body #masthead.pm-header-v2 .pm-topbar .header-top .loction-icon{display:none}
+}
+@media (max-width:1024px){
+  html body #masthead.pm-header-v2 .pm-topbar{display:none}
+  html body #masthead.pm-header-v2 .site-header-inner{gap:12px;padding:10px 0}
+  html body #masthead.pm-header-v2 .header-menu{flex:0 0 auto;margin-left:auto}
+  html body #masthead.pm-header-v2 .pm-header-actions{display:none}
+  html body #masthead.pm-header-v2 .site-branding .custom-logo-link .custom-logo{width:142px}
 }

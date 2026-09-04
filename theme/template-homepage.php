@@ -298,9 +298,9 @@ $pm_hero_style = $pm_hero_image ? sprintf( '--pm-hero-image:url(%s)', esc_url( $
 	<?php // ==================== CONTACT + MAP + FORM ======================= ?>
 	<section class="pm-section" id="contact">
 		<div class="pm-container">
-			<div class="pm-section-head">
+			<div class="pm-section-head pm-section-head--center">
 				<?php if ( pallara_hp_get( 'hp_contact_eyebrow' ) ) : ?>
-					<p class="pm-eyebrow"><?php echo esc_html( pallara_hp_get( 'hp_contact_eyebrow' ) ); ?></p>
+					<p class="pm-eyebrow pm-eyebrow--center"><?php echo esc_html( pallara_hp_get( 'hp_contact_eyebrow' ) ); ?></p>
 				<?php endif; ?>
 				<h2><?php echo esc_html( pallara_hp_get( 'hp_contact_heading' ) ); ?></h2>
 				<?php if ( pallara_hp_get( 'hp_contact_intro' ) ) : ?>

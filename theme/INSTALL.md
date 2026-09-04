@@ -42,6 +42,7 @@ Upload these 11 files, keeping the folder structure exactly. Create the
 | `theme/assets/css/homepage.css` | `siteorigin-corp-child/assets/css/homepage.css` |
 | `theme/assets/css/call-affordances.css` | `siteorigin-corp-child/assets/css/call-affordances.css` |
 | `theme/assets/css/global-header-footer.css` | `siteorigin-corp-child/assets/css/global-header-footer.css` |
+| `theme/patches/header-redesign.php` (optional, step 6) | `siteorigin-corp-child/header.php` |
 | `theme/assets/js/homepage.js` | `siteorigin-corp-child/assets/js/homepage.js` |
 | `theme/assets/js/call-affordances.js` | `siteorigin-corp-child/assets/js/call-affordances.js` |
 
@@ -132,7 +133,35 @@ To swap the images, use the image fields (Hero background image, the Main and
 Inset image on each content section, and Team photo). Until then the page uses
 the existing images from the media library.
 
-## Step 6 - Optional: the header.php edit
+## Step 6 - Optional: the exact redesign header
+
+`patches/header-redesign.php` is your current `header.php` with the header
+markup rearranged into the redesign layout:
+
+```
+row 1   dark strip:  address, email, phone            socials
+row 2   white row:   logo | navigation | phone + BOOK NOW
+```
+
+CSS alone cannot reach that layout, because `header.php` keeps the contact
+details and the navigation in separate containers, so the stylesheet-only
+version puts the navigation on its own row underneath instead.
+
+Every PHP call, widget area, setting and script hook in the file is unchanged
+- only the order and nesting of the wrapper divs differs, plus a
+`pm-header-v2` class on `<header>` that the stylesheet keys off. The banner
+block and everything after `</header>` is your existing file untouched.
+
+**To use it:** back up `header.php`, then upload `header-redesign.php` in its
+place, renamed to `header.php`. **To revert:** restore your backup. Nothing
+else depends on it, and the rest of the redesign keeps working either way.
+
+While you are in there, note the file has `$classes = $outer_class;` where
+`$outer_class` is never defined, which emits a notice on every page load.
+The patched file leaves that as-is so the diff stays minimal; the one-line
+fix is `$classes = isset( $outer_class ) ? $outer_class : '';`.
+
+## Step 7 - Optional: the banner guard in header.php
 
 `header.php` prints the shared banner (featured image plus the CF7 banner
 form) on every page. The new template supplies its own hero, so the stylesheet
@@ -147,7 +176,7 @@ Full instructions: `theme/patches/header.php.md`.
 
 ---
 
-## Step 7 - The header and footer restyle
+## Step 8 - The header and footer restyle
 
 `global-header-footer.css` loads on **every page** and restyles the existing
 header and footer markup to match the redesign. Nothing structural moves and
@@ -174,7 +203,7 @@ add this to `functions.php`:
 add_filter( 'pallara_hp_load_header_styles', '__return_false' );
 ```
 
-## Step 8 - Check the mobile bits
+## Step 9 - Check the mobile bits
 
 On a phone (or a narrow browser window under 1024px):
 

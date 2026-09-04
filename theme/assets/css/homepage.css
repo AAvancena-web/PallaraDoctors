@@ -101,8 +101,9 @@ html body .pm-home .pm-eyebrow{
 html body .pm-home .pm-eyebrow::before{content:"";width:28px;height:2px;background:var(--pm-blue);display:inline-block}
 html body .pm-home .pm-eyebrow--center{justify-content:center}
 html body .pm-home .pm-lead{font-size:17px;color:var(--pm-ink-soft)}
-html body .pm-home .pm-section-head{max-width:760px}
+html body .pm-home .pm-section-head{max-width:none}
 html body .pm-home .pm-section-head--center{margin-inline:auto;text-align:center}
+html body .pm-home .pm-section-head--center .pm-lead{max-width:70ch;margin-inline:auto}
 html body .pm-home .pm-section-head--center .pm-eyebrow{justify-content:center}
 
 /* ---------- Buttons ---------- */
@@ -223,13 +224,14 @@ html body .pm-home .pm-services-grid{display:grid;grid-template-columns:repeat(4
 @media (max-width:1100px){ html body .pm-home .pm-services-grid{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:560px){ html body .pm-home .pm-services-grid{grid-template-columns:1fr} }
 html body .pm-home .pm-service-card{
+  text-align:center;
   background:#fff;border:1px solid var(--pm-line);border-radius:var(--pm-radius);padding:30px 26px;
   transition:.24s ease;position:relative;overflow:hidden;
 }
 html body .pm-home .pm-service-card::after{content:"";position:absolute;left:0;bottom:0;height:4px;width:0;background:var(--pm-blue);transition:width .3s ease}
 html body .pm-home .pm-service-card:hover{transform:translateY(-6px);box-shadow:var(--pm-shadow);border-color:transparent}
 html body .pm-home .pm-service-card:hover::after{width:100%}
-html body .pm-home .pm-service-card .pm-si{width:50px;height:50px;border-radius:12px;background:var(--pm-blue-tint);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+html body .pm-home .pm-service-card .pm-si{width:50px;height:50px;border-radius:12px;background:var(--pm-blue-tint);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
 html body .pm-home .pm-service-card .pm-si svg{width:24px;height:24px;fill:var(--pm-blue)}
 html body .pm-home .pm-service-card h3{font-size:16.96px;margin-bottom:8px}
 html body .pm-home .pm-service-card p{font-size:14.88px;color:var(--pm-ink-soft);margin:0}
@@ -277,8 +279,8 @@ html body .pm-home .pm-team-media img{border-radius:var(--pm-radius-lg);box-shad
 @media (max-width:900px){ html body .pm-home .pm-team .pm-container{grid-template-columns:1fr} }
 
 html body .pm-home .pm-cta-band{background:linear-gradient(115deg,var(--pm-blue-deep),var(--pm-blue) 65%,#3f6ac4);color:#fff;text-align:center}
-html body .pm-home .pm-cta-band h2{color:#fff;max-width:22ch;margin-inline:auto}
-html body .pm-home .pm-cta-band p{color:rgba(255,255,255,.88);max-width:60ch;margin-inline:auto}
+html body .pm-home .pm-cta-band h2{color:#fff;max-width:none;margin-inline:auto}
+html body .pm-home .pm-cta-band p{color:rgba(255,255,255,.88);max-width:none;margin-inline:auto}
 html body .pm-home .pm-cta-band .pm-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:28px}
 
 /* ============================================================

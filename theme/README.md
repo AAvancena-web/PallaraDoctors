@@ -22,7 +22,8 @@ assets/css/call-affordances.css  Header phone circle + floating call button (sit
 assets/css/global-header-footer.css  Restyles the theme header and footer (sitewide)
 assets/js/homepage.js            Form validation, date floor, reveal-on-scroll
 assets/js/call-affordances.js    Fallback injection of the header phone button
-patches/header.php.md            The one optional edit to header.php
+patches/header-redesign.php      Optional drop-in header.php: the exact redesign layout
+patches/header.php.md            The one optional edit to your existing header.php
 ```
 
 ## Install

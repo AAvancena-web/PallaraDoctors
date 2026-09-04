@@ -91,6 +91,23 @@ function pallara_hp_phone() {
 function pallara_hp_enqueue_assets() {
 	$phone = pallara_hp_phone();
 
+	/**
+	 * Filter whether the global header/footer restyle is loaded.
+	 *
+	 * Returning false leaves the theme's own header and footer appearance
+	 * untouched sitewide.
+	 *
+	 * @param bool $load Whether to enqueue the restyle.
+	 */
+	if ( apply_filters( 'pallara_hp_load_header_styles', true ) ) {
+		wp_enqueue_style(
+			'pallara-global-header-footer',
+			pallara_hp_asset_url( 'assets/css/global-header-footer.css' ),
+			array(),
+			pallara_hp_asset_version( 'assets/css/global-header-footer.css' )
+		);
+	}
+
 	// Sitewide: circular header phone button + floating call button.
 	wp_enqueue_style(
 		'pallara-call-affordances',

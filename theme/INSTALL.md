@@ -28,7 +28,7 @@ for uploading new files).
 
 ## Step 1 - Upload the files
 
-Upload these 10 files, keeping the folder structure exactly. Create the
+Upload these 11 files, keeping the folder structure exactly. Create the
 `inc/homepage/`, `assets/css/` and `assets/js/` folders if they do not exist.
 
 | Upload this file | To this path on the server |
@@ -41,6 +41,7 @@ Upload these 10 files, keeping the folder structure exactly. Create the
 | `theme/inc/homepage/seeder.php` | `siteorigin-corp-child/inc/homepage/seeder.php` |
 | `theme/assets/css/homepage.css` | `siteorigin-corp-child/assets/css/homepage.css` |
 | `theme/assets/css/call-affordances.css` | `siteorigin-corp-child/assets/css/call-affordances.css` |
+| `theme/assets/css/global-header-footer.css` | `siteorigin-corp-child/assets/css/global-header-footer.css` |
 | `theme/assets/js/homepage.js` | `siteorigin-corp-child/assets/js/homepage.js` |
 | `theme/assets/js/call-affordances.js` | `siteorigin-corp-child/assets/js/call-affordances.js` |
 
@@ -54,8 +55,9 @@ siteorigin-corp-child/
 ├── template-homepage.php      NEW
 ├── assets/
 │   ├── css/
-│   │   ├── homepage.css              NEW
-│   │   └── call-affordances.css      NEW
+│   │   ├── homepage.css                 NEW
+│   │   ├── call-affordances.css         NEW
+│   │   └── global-header-footer.css     NEW
 │   └── js/
 │       ├── homepage.js               NEW
 │       └── call-affordances.js       NEW
@@ -145,7 +147,34 @@ Full instructions: `theme/patches/header.php.md`.
 
 ---
 
-## Step 7 - Check the mobile bits
+## Step 7 - The header and footer restyle
+
+`global-header-footer.css` loads on **every page** and restyles the existing
+header and footer markup to match the redesign. Nothing structural moves and
+no markup changes, so the theme's sticky-nav and mobile-drawer scripts keep
+working exactly as they do now.
+
+What changes:
+
+- **Header top row.** The pixel icons become crisp SVGs in brand blue, the
+  phone becomes a dark circular icon plus the number, and BOOK NOW becomes a
+  solid rounded blue button (the corner brackets go).
+- **Navigation.** The solid blue bar becomes white with a hairline, ink menu
+  labels, a soft blue pill on hover and for the current page, and a rounded
+  card with a shadow for the dropdowns. The sticky state gains a shadow.
+- **Mobile drawer.** Wider panel, larger tap targets, tidier submenu toggles.
+- **Footer.** Blue top rule, uppercase widget titles, SVG contact icons, and
+  lighter, more readable link colours with a white hover.
+
+Give the site a click through after uploading, especially the dropdown menus
+and the mobile drawer. If you want it off, either do not upload the file or
+add this to `functions.php`:
+
+```php
+add_filter( 'pallara_hp_load_header_styles', '__return_false' );
+```
+
+## Step 8 - Check the mobile bits
 
 On a phone (or a narrow browser window under 1024px):
 
@@ -174,6 +203,11 @@ Autoptimize is caching, clear its cache.
 `form-section` / `google-maps` widget areas are showing through. They are
 hidden by the stylesheet on this template, so this means the CSS did not load
 - same fix as above.
+
+**The header or footer looks wrong after uploading.** Turn the restyle off
+with the filter above, confirm the old look returns, and send me a screenshot
+of what was off. The stylesheet is written to out-specify the Customizer's
+Additional CSS, but your live site may carry rules I have not seen.
 
 **The layout is squeezed into the middle of the screen.** `.pm-home` breaks
 out of `.corp-container`. If a plugin adds another wrapper, tell me and I will

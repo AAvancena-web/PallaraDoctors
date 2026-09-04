@@ -19,6 +19,7 @@ inc/homepage/acf-fields.php      ACF field group, registered in code
 inc/homepage/seeder.php          One-time seeder + WP-CLI command
 assets/css/homepage.css          Template styles (scoped to .pm-home)
 assets/css/call-affordances.css  Header phone circle + floating call button (sitewide)
+assets/css/global-header-footer.css  Restyles the theme header and footer (sitewide)
 assets/js/homepage.js            Form validation, date floor, reveal-on-scroll
 assets/js/call-affordances.js    Fallback injection of the header phone button
 patches/header.php.md            The one optional edit to header.php
@@ -120,6 +121,14 @@ CF7 then owns that form completely and the built-in layout is not rendered.
   sitewide. Turn the floating button off per site with the
   `hp_floating_call_show` toggle, or per request with the
   `pallara_hp_show_floating_call` filter.
+- **Global header and footer.** `global-header-footer.css` restyles the
+  existing header.php / footer.php markup sitewide: white nav with pill
+  hovers, SVG contact icons, a dark circular phone button, a solid BOOK NOW
+  button, and a lighter footer. It changes appearance only, so the theme's
+  sticky-nav and drawer scripts are unaffected. Its selectors deliberately
+  out-specify the Customizer's Additional CSS, which loads after any
+  enqueued stylesheet. Disable with
+  `add_filter( 'pallara_hp_load_header_styles', '__return_false' );`.
 - **Booking URL.** Every "Book Now" defaults to the AutoMed booking link;
   change it in one place with the **Booking system URL** field or the
   `pallara_hp_booking_url` filter.

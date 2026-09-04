@@ -48,7 +48,9 @@ $pm_hero_style = $pm_hero_image ? sprintf( '--pm-hero-image:url(%s)', esc_url( $
 				<?php if ( $pm_badges ) : ?>
 					<ul class="pm-hero-badges">
 						<?php foreach ( $pm_badges as $pm_badge ) : ?>
-							<li><?php pallara_hp_icon( 'check' ); ?> <?php echo esc_html( pallara_hp_sub( $pm_badge, 'hp_badge_text' ) ); ?></li>
+							<?php $pm_badge_text = trim( (string) pallara_hp_sub( $pm_badge, 'hp_badge_text' ) ); ?>
+							<?php if ( '' === $pm_badge_text ) { continue; } ?>
+							<li><?php pallara_hp_icon( 'check' ); ?> <?php echo esc_html( $pm_badge_text ); ?></li>
 						<?php endforeach; ?>
 					</ul>
 				<?php endif; ?>
@@ -116,10 +118,18 @@ $pm_hero_style = $pm_hero_image ? sprintf( '--pm-hero-image:url(%s)', esc_url( $
 									<p><?php echo esc_html( pallara_hp_sub( $pm_card, 'hp_qc_text' ) ); ?></p>
 								<?php endif; ?>
 
-								<?php foreach ( (array) pallara_hp_sub( $pm_card, 'hp_qc_rows', array() ) as $pm_row ) : ?>
+								<?php foreach ( pallara_hp_sub_rows( $pm_card, 'hp_qc_rows' ) as $pm_row ) : ?>
+									<?php
+									$pm_row_label = trim( (string) pallara_hp_sub( $pm_row, 'hp_qc_row_label' ) );
+									$pm_row_value = trim( (string) pallara_hp_sub( $pm_row, 'hp_qc_row_value' ) );
+
+									if ( '' === $pm_row_label && '' === $pm_row_value ) {
+										continue;
+									}
+									?>
 									<div class="pm-hours-row">
-										<span><?php echo esc_html( pallara_hp_sub( $pm_row, 'hp_qc_row_label' ) ); ?></span>
-										<strong><?php echo esc_html( pallara_hp_sub( $pm_row, 'hp_qc_row_value' ) ); ?></strong>
+										<span><?php echo esc_html( $pm_row_label ); ?></span>
+										<strong><?php echo esc_html( $pm_row_value ); ?></strong>
 									</div>
 								<?php endforeach; ?>
 
@@ -211,11 +221,20 @@ $pm_hero_style = $pm_hero_image ? sprintf( '--pm-hero-image:url(%s)', esc_url( $
 
 							<?php echo wp_kses_post( pallara_hp_sub( $pm_sec, 'hp_sec_body' ) ); ?>
 
-							<?php $pm_ticks = (array) pallara_hp_sub( $pm_sec, 'hp_sec_ticks', array() ); ?>
+							<?php
+							$pm_ticks = array_filter(
+								pallara_hp_sub_rows( $pm_sec, 'hp_sec_ticks' ),
+								static function ( $tick ) {
+									return '' !== trim( (string) pallara_hp_sub( $tick, 'hp_tick_text' ) );
+								}
+							);
+							?>
 							<?php if ( $pm_ticks ) : ?>
 								<ul class="pm-ticks">
 									<?php foreach ( $pm_ticks as $pm_tick ) : ?>
-										<li><?php pallara_hp_icon( 'check' ); ?> <?php echo esc_html( pallara_hp_sub( $pm_tick, 'hp_tick_text' ) ); ?></li>
+										<?php $pm_tick_text = trim( (string) pallara_hp_sub( $pm_tick, 'hp_tick_text' ) ); ?>
+										<?php if ( '' === $pm_tick_text ) { continue; } ?>
+										<li><?php pallara_hp_icon( 'check' ); ?> <?php echo esc_html( $pm_tick_text ); ?></li>
 									<?php endforeach; ?>
 								</ul>
 							<?php endif; ?>

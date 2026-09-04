@@ -72,6 +72,26 @@ function pallara_hp_sub( $row, $key, $fallback = '' ) {
 }
 
 /**
+ * Read a nested repeater from a repeater row as a clean list of rows.
+ *
+ * ACF hands back false for an empty nested repeater, and casting that with
+ * (array) produces array( false ) - one phantom row, which is how an empty
+ * tick list ended up rendering a lone tick icon. Only real row arrays get
+ * through here.
+ *
+ * @param array  $row Parent row.
+ * @param string $key Nested repeater sub-field name.
+ * @return array
+ */
+function pallara_hp_sub_rows( $row, $key ) {
+	if ( ! is_array( $row ) || empty( $row[ $key ] ) || ! is_array( $row[ $key ] ) ) {
+		return array();
+	}
+
+	return array_values( array_filter( $row[ $key ], 'is_array' ) );
+}
+
+/**
  * Normalise an ACF link value into url / title / target.
  *
  * Accepts the ACF link array, a bare URL string, or an empty value.

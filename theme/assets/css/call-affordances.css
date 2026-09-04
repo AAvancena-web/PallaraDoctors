@@ -8,41 +8,48 @@
    2. Floating "Call Now" button, pinned bottom-centre on mobile.
    ============================================================ */
 
+/* Selectors below are prefixed with "html body" on purpose: the child
+   theme's style.css and the Customizer's Additional CSS can both load
+   after this file, and the extra element selectors keep these rules
+   winning regardless of source order. Rebuild note: keep the prefix
+   when editing. */
+
 /* ---------- 1. Circular phone button beside the hamburger ---------- */
-#site-navigation .mobile-call-menu{display:none}
+html body #site-navigation .mobile-call-menu{display:none}
 
 @media (max-width:1024px){
   /* header.php order: menu, socials, call widget, hamburger */
-  #site-navigation{align-items:center}
-  #site-navigation .mobile-call-menu{display:flex;align-items:center;margin-top:15px}
-  #site-navigation .mobile-call-menu .textwidget,
-  #site-navigation .mobile-call-menu .call-mobile{display:flex;align-items:center}
+  html body #site-navigation{align-items:center}
+  html body #site-navigation .mobile-call-menu{display:flex;align-items:center;margin-top:15px}
+  html body #site-navigation .mobile-call-menu .textwidget,
+html body #site-navigation .mobile-call-menu .call-mobile{display:flex;align-items:center}
 
-  #site-navigation .mobile-call-menu .call-mobile a,
-  .pm-phone-circle{
+  html body #site-navigation .mobile-call-menu .call-mobile a,
+html body .pm-phone-circle{
     display:flex;align-items:center;justify-content:center;
     width:44px;height:44px;border-radius:50%;
     background:#272727;border:2px solid #272727;
     transition:background .2s ease,border-color .2s ease;
     padding:0;line-height:0;
   }
-  #site-navigation .mobile-call-menu .call-mobile a:hover,
-  #site-navigation .mobile-call-menu .call-mobile a:focus,
-  .pm-phone-circle:hover,.pm-phone-circle:focus{background:#3257a8;border-color:#3257a8}
+  html body #site-navigation .mobile-call-menu .call-mobile a:hover,
+html body #site-navigation .mobile-call-menu .call-mobile a:focus,
+html body .pm-phone-circle:hover,
+html body .pm-phone-circle:focus{background:#3257a8;border-color:#3257a8}
 
   /* the widget icon is a dark PNG - force it white inside the dark circle */
-  #site-navigation .mobile-call-menu .call-mobile img{
+  html body #site-navigation .mobile-call-menu .call-mobile img{
     width:19px !important;height:19px;object-fit:contain;
     padding-top:0 !important;filter:brightness(0) invert(1);
   }
-  .pm-phone-circle svg{width:19px;height:19px;fill:#fff}
+  html body .pm-phone-circle svg{width:19px;height:19px;fill:#fff}
 
   /* keep the hamburger vertically centred against the new circle */
-  .hamburger--collapse.reflex-menu-toggle{top:0;margin-top:15px}
+  html body .hamburger--collapse.reflex-menu-toggle{top:0;margin-top:15px}
 }
 
 /* ---------- 2. Floating call button (mobile, bottom centre) ---------- */
-.pm-floating-call{
+html body .pm-floating-call{
   display:none;position:fixed;left:50%;transform:translateX(-50%);
   bottom:calc(18px + env(safe-area-inset-bottom));z-index:9999;
   align-items:center;gap:10px;padding:15px 30px;border-radius:999px;
@@ -52,18 +59,18 @@
   box-shadow:0 12px 30px rgba(26,49,98,.45);
   animation:pmPulseCall 2.4s ease-in-out infinite;
 }
-.pm-floating-call svg{width:19px;height:19px;fill:#fff;flex:none}
-.pm-floating-call:active{transform:translateX(-50%) scale(.97)}
+html body .pm-floating-call svg{width:19px;height:19px;fill:#fff;flex:none}
+html body .pm-floating-call:active{transform:translateX(-50%) scale(.97)}
 @keyframes pmPulseCall{
   0%,100%{box-shadow:0 12px 30px rgba(26,49,98,.45),0 0 0 0 rgba(50,87,168,.5)}
   60%{box-shadow:0 12px 30px rgba(26,49,98,.45),0 0 0 16px rgba(50,87,168,0)}
 }
 @media (max-width:1024px){
-  .pm-floating-call{display:inline-flex}
-  body{padding-bottom:78px}
+  html body .pm-floating-call{display:inline-flex}
+  html body{padding-bottom:78px}
   /* keep the theme's back-to-top button clear of the floating button */
-  #scroll-to-top{bottom:96px}
+  html body #scroll-to-top{bottom:96px}
 }
 @media (prefers-reduced-motion:reduce){
-  .pm-floating-call{animation:none}
+  html body .pm-floating-call{animation:none}
 }
